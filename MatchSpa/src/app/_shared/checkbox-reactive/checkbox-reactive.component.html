@@ -1,0 +1,9 @@
+<form [formGroup]="checkboxFormArray">
+  <div formArrayName="items" class="row">
+    <div *ngFor="let item of items.controls; index as i" class="col-6 col-md-3 col-lg-2 mb-2">
+      <label>
+        <input type="checkbox" [formControlName]="i" value="{{options[i].keyValue}}"> {{options[i].keyLabel}}
+      </label>
+    </div>
+  </div>
+</form>

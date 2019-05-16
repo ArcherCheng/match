@@ -1,0 +1,205 @@
+<div class="jumbotron container-fluid">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <h2>會員註冊</h2>
+      <hr>
+      <div class="form-group row">
+        <label class="col-3 col-form-label">我的姓氐</label>
+        <div class="col-9">
+          <input class="form-control" formControlName="firstName">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-3 col-form-label">我的名字</label>
+        <div class="col-9">
+          <input class="form-control" formControlName="lastName">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">我的暱稱</label>
+        <div class="col-9">
+          <input class="form-control" formControlName="nickName">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">行動電話</label>
+        <div class="col-9">
+          <input class="form-control" formControlName="phone">
+          <!-- <small id="phone" class="form-text text-muted">只作註冊及登入用,其餘地方我們不會暴露此註冊電話</small> -->
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">電子郵件</label>
+        <div class="col-9">
+          <input class="form-control" formControlName="email">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">我的性別</label>
+        <div class="col-9 text-left">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sex" value="1" id="sex1" formControlName="sex">
+            <label class="form-check-label" for="sex1">我是男生</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sex" value="2" id="sex2" formControlName="sex">
+            <label class="form-check-label" for="sex2">我是女生</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">出生西元年</label>
+        <div class="col-9">
+          <select class="form-control" id="birthYear" formControlName="birthYear">
+            <option value="">請選擇</option>
+            <option *ngFor="let item of yearOptions">{{item}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">婚姻狀況</label>
+        <div class="col-9 text-left">
+          <select class="form-control" id="marry" formControlName="marry">
+            <option value="">請選擇</option>
+            <option value="1">1.單身未婚</option>
+            <option value="2">2.二春無小孩</option>
+            <option value="3">3.二春有小孩</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">最高學歷</label>
+        <div class="col-9">
+          <select class="form-control" id="education" formControlName="education">
+            <option value="">請選擇</option>
+            <option value="1">1.小學</option>
+            <option value="2">2.中學</option>
+            <option value="3">3.高中(職)</option>
+            <option value="4">4.大學(專)</option>
+            <option value="5">5.碩士</option>
+            <option value="6">6.博士</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">我的身高(公分)</label>
+        <div class="col-9">
+          <select class="form-control" id="heights" formControlName="heights">
+            <option value="">請選擇</option>
+            <option *ngFor="let item of heightOptions">{{item}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">我的體重(公斤)</label>
+        <div class="col-9">
+          <select class="form-control" id="weights" formControlName="weights">
+            <option value="">請選擇</option>
+            <option *ngFor="let item of weightOptions">{{item}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">我的血型</label>
+        <div class="col-9">
+          <select class="form-control" id="blood" formControlName="blood">
+            <option value="">請選擇</option>
+            <option *ngFor="let item of bloodOptions">{{item.keyValue}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">我的星座</label>
+        <div class="col-9">
+          <select class="form-control" id="star" formControlName="star">
+            <option value="">請選擇</option>
+            <option value="水瓶座">水瓶座(1/20-2/18)</option>
+            <option value="雙魚座">雙魚座(2/19-3/20)</option>
+            <option value="牡羊座">牡羊座(3/21-4/19)</option>
+            <option value="金牛座">金牛座(4/20-5/20)</option>
+            <option value="雙子座">雙子座(5/21-6/21)</option>
+            <option value="巨蟹座">巨蟹座(6/22-7/22)</option>
+            <option value="獅子座">獅子座(7/23-8/22)</option>
+            <option value="處女座">處女座(8/23-9/22)</option>
+            <option value="天秤座">天秤座(9/23-10/23)</option>
+            <option value="天蠍座">天蠍座(10/24-11/22)</option>
+            <option value="射手座">射手座(11/23-12/21)</option>
+            <option value="魔羯座">魔羯座(12/22-1/19)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">居住城市</label>
+        <div class="col-9">
+          <select class="form-control" id="city" formControlName="city">
+            <option value="">請選擇</option>
+            <option *ngFor="let item of cityOptions">{{item.keyValue}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">我的職業類別</label>
+        <div class="col-9">
+          <select class="form-control" id="jobType" formControlName="jobType">
+            <option value="">請選擇</option>
+            <option *ngFor="let item of jobOptions">{{item.keyValue}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">我的宗教信仰</label>
+        <div class="col-9">
+          <select class="form-control" id="religion" formControlName="religion">
+            <option value="">請選擇</option>
+            <option *ngFor="let item of religionOptions">{{item.keyValue}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">我的年薪(萬)</label>
+        <div class="col-9">
+          <input type="number" class="form-control" formControlName="salary">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">通行密碼</label>
+        <div class="col-9">
+          <input class="form-control" formControlName="password">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 col-form-label">密碼確認</label>
+        <div class="col-9">
+          <input class="form-control" formControlName="passwordConfirm">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="offset-3 col-sm-9">
+          <button class="btn btn-success btn-block" [disabled]="!registerForm.valid" type="submit">註冊送出</button>
+          <!-- <button class="btn btn-default" type="button" (click)="cancel()">取消註冊</button> -->
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!--
+  <p>Form value: {{ registerForm.value | json }}</p>
+  <p>Form valid: {{ registerForm.valid }} </p>
+   -->

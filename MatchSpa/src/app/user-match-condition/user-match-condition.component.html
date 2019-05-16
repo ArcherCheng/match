@@ -1,0 +1,152 @@
+<div class="jumbotron container-fluid">
+  <div class="row">
+    <h3 class="text-primary">我的配對條件設定</h3>
+  </div>
+  <!-- <p class="text-danger">(空白或零為不設定條件)</p> -->
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="myFormGroup" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group col-6">
+                <label>我的性別:</label>
+                <select class="form-control" id="sex" name="sex" formControlName="sex">
+                  <option value="1">1.男生</option>
+                  <option value="2">2.女生</option>
+                </select>
+              </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>對像條件從:</label>
+            <select class="form-control" id="marryMin" name="marryMin" formControlName="marryMin">
+              <option value="1">1.單身未婚</option>
+              <option value="2">2.二春無小孩</option>
+              <option value="3">3.二春有小孩</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label>對像條件到:</label>
+            <select class="form-control" id="marryMax" name="marryMax" formControlName="marryMax">
+              <option value="1">1.單身未婚</option>
+              <option value="2">2.二春無小孩</option>
+              <option value="3">3.二春有小孩</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>出生西元年從:</label>
+            <input type="number" class="form-control" formControlName="yearMin">
+          </div>
+          <div class="form-group col-6">
+            <label>出生西元年到:</label>
+            <input type="number" class="form-control" formControlName="yearMax">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>最低學歷從:</label>
+            <select class="form-control" id="educationMin" name="educationMin" formControlName="educationMin">
+              <option value="0">0.未設定</option>
+              <option value="1">1.小學</option>
+              <option value="2">2.中學</option>
+              <option value="3">3.高中(職)</option>
+              <option value="4">4.大學(專)</option>
+              <option value="5">5.碩士</option>
+              <option value="6">6.博士</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label>最高學歷到:</label>
+            <select class="form-control" id="educationMax" name="educationMax" formControlName="educationMax">
+              <option value="0">0.未設定</option>
+              <option value="1">1.小學</option>
+              <option value="2">2.中學</option>
+              <option value="3">3.高中(職)</option>
+              <option value="4">4.大學(專)</option>
+              <option value="5">5.碩士</option>
+              <option value="6">6.博士</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>最小身高從:</label>
+            <input type="number" class="form-control" formControlName="heightsMin">
+          </div>
+          <div class="form-group col-6">
+            <label>最大身高到:</label>
+            <input type="number" class="form-control" formControlName="heightsMax">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>最小體重從:</label>
+            <input type="number" class="form-control" formControlName="weightsMin">
+          </div>
+          <div class="form-group col-6">
+            <label>最大體重到:</label>
+            <input type="number" class="form-control" formControlName="weightsMax">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>最低年薪(萬):</label>
+          <input type="number" class="form-control" formControlName="salaryMin">
+        </div>
+        <div class="form-group">
+          <p>血型條件:</p>
+          <app-checkbox-reactive [options]="bloodOptions" [selectedValues]="bloodSelected"
+            (toggle)="onBloodChenges($event)">
+          </app-checkbox-reactive>
+        </div>
+        <div class="form-group">
+          <p>星座條件:</p>
+          <app-checkbox-reactive [options]="starOptions" [selectedValues]="starSelected"
+            (toggle)="onStarChenges($event)">
+          </app-checkbox-reactive>
+        </div>
+        <div class="form-group">
+          <p>居住地區條件:</p>
+          <app-checkbox-reactive [options]="cityOptions" [selectedValues]="citySelected"
+            (toggle)="onCityChenges($event)">
+          </app-checkbox-reactive>
+        </div>
+        <div class="form-group">
+          <p>職業類別條件:</p>
+          <app-checkbox-reactive [options]="jobOptions" [selectedValues]="jobSelected" (toggle)="onJobChenges($event)">
+          </app-checkbox-reactive>
+        </div>
+        <div class="form-group">
+          <p>宗教信仰條件:</p>
+          <app-checkbox-reactive [options]="religionOptions" [selectedValues]="religionSelected"
+            (toggle)="onReligionChenges($event)">
+          </app-checkbox-reactive>
+        </div>
+        <input type="number" class="form-control" formControlName="userId" hidden>
+        <div class="form-row">
+          <button [disabled]="!myFormGroup.valid" type="submit" class="btn btn-success btn-block">送出配對</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+  <p>Form valid: {{ myFormGroup.valid }} </p>
+  <p>Form value: {{ myFormGroup.value | json }}</p>
+
+
+<!--
+    <div class="row">
+      <div *ngFor="let item of bloodInclude.controls; let i = index; " class="col-6 col-md-3 col-lg-2 mb-2">
+        <input type="checkbox" formControlName="bloodInclude">
+        <label>{{bloodList[i]}}</label>
+      </div>
+      <div *ngFor="let item of bloodList; let i = index" class="col-6 col-md-3 col-lg-2 mb-2">
+          <input type="checkbox" formControlName="bloodInclude"
+          [id]="'bloodInclude'+i" [value]="item" (click)="PushValue($event.target.checked, item)"
+          [checked]="userCondition.bloodInclude?.includes(item)" >
+          <label class="form-check-label" [for]="'bloodInclude'+i">{{item}}</label>
+      </div>
+    </div>
+  -->

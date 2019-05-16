@@ -1,0 +1,4 @@
+nuget package manager 
+<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1"/>
+<PackageReference Include="CloudinaryDotNet" Version="1.3.1"/>
+<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.3"/>

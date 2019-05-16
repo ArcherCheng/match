@@ -1,0 +1,53 @@
+<nav class="topbar " [ngClass]="{'not-home': router.isActive('/',ture)}">
+  <a [routerLink]="['/']">
+    <img class="brand-logo" src="/assets/imgs/logo.svg" alt="台北單身派對" title="台北單身派對">
+  </a>
+  <span class="">
+    <!-- <img src="{{authService.currentUser.photoUrl || '../../assets/user.png'}}" alt=""> -->
+    <img src="{{photoUrl}}" alt="" id="topbar-photo">
+    {{authService.decodedToken?.unique_name}}
+  </span>
+
+  <span class="split"></span>
+  <button class="navbar-toggler" (click)="navbarCollapsed = !navbarCollapsed" type="button">
+    <span class="navbar-toggler-icon">
+      <span *ngIf="navbarCollapsed" class="fa fa-bars"></span>
+      <span *ngIf="!navbarCollapsed" class="fa fa-times"></span>
+    </span>
+  </button>
+
+  <div class="navbar-menu">
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['/userCondition']"
+      routerLinkActive="router-link-active">開始配對
+    </a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['/userMatchList/0']"
+      routerLinkActive="router-link-active">配對列表
+    </a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['/myData/myDetail']"
+      routerLinkActive="router-link-active">我的資料
+    </a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['/myData/myPhotos']"
+      routerLinkActive="router-link-active">我的相片
+    </a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['/myData/myLikers']"
+      routerLinkActive="router-link-active">我的最愛
+    </a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['/myData/myMessages']"
+      routerLinkActive="router-link-active">我的訊息
+    </a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['auth','login']"
+      routerLinkActive="router-link-active">會員登入
+    </a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['auth','changePassword']"
+      routerLinkActive="router-link-active">變更密碼
+    </a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['auth','forgetPassword']"
+      routerLinkActive="router-link-active">忘記密碼
+    </a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['auth','register']"
+      routerLinkActive="router-link-active">新人註冊
+    </a>
+    <a class="list-group-item list-group-item-action bg-light" (click)="logout()">會員登出
+    </a>
+  </div>
+</nav>

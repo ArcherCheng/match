@@ -1,0 +1,35 @@
+<div class="member-detail">
+  <p><strong>我的暱稱: {{user.nickName}}</strong> </p>
+  <!-- <p><strong>我的姓名: {{user.firstName}}{{user.lastName}}</strong> </p> -->
+  <p><strong>身份類別: {{user.marry|marry}}</strong> </p>
+  <p><strong>我的出生年: {{user.birthYear}}</strong></p>
+  <!-- <p><strong>我的年齡: {{user.age}}</strong></p> -->
+  <p><strong>我的身高: {{user.heights}} CM</strong> </p>
+  <p><strong>我的體重: {{user.weights}} KG</strong> </p>
+  <p><strong>我的年薪: {{user.salary}} 萬</strong></p>
+  <p><strong>我的血型: {{user.blood}}</strong> </p>
+  <p><strong>我的星座: {{user.star}}</strong></p>
+  <p><strong>最高學歷: {{user.education | education}}</strong></p>
+  <p><strong>畢業學校: {{user.school}}</strong> </p>
+  <p><strong>畢業科系: {{user.subjects}}</strong> </p>
+  <p><strong>職業類別: {{user.jobType}}</strong> </p>
+  <p><strong>居住城市: {{user.city}}</strong></p>
+  <p><strong>宗教信仰: {{user.religion}}</strong> </p>
+</div>
+<div class="member-introduction">
+  <h4>自我介紹</h4>
+  <p>{{user.introduction}}</p>
+</div>
+<div>
+  <h4>尋找對像</h4>
+  <p>{{user.likeCondition}}</p>
+</div>
+<div>
+  <a class="btn btn-primary btn-block" [routerLink]="['/userPhotos',user.userId]" routerLinkActive="router-link-active">相片瀏覽</a>
+</div>
+<div>
+    <a class="btn btn-success btn-block" [routerLink]="['/userPhotos',user.userId]" routerLinkActive="router-link-active">加入好友</a>
+</div>
+<div>
+    <a class="btn btn-warning btn-block" [routerLink]="['/userPhotos',user.userId]" routerLinkActive="router-link-active">我要留言</a>
+</div>

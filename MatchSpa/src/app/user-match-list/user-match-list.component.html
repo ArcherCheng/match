@@ -1,0 +1,14 @@
+<div class="jumbotron container-fluid">
+  <h2>我的配對名單</h2>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let user of userList">
+      <app-user-card [user]=user></app-user-card>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center">
+  <pagination [boundaryLinks]="true" [rotate]="true" [maxSize]="1" [totalItems]="pagination.totalItems"
+    [(ngModel)]="pagination.currentPage" [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)"
+    previousText="上頁" nextText="下頁" firstText="首頁" lastText="尾頁">
+  </pagination>
+</div>
