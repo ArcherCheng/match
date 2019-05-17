@@ -27,7 +27,7 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
-      <label for="">新增相片: </label>
+      <label for="">新增相片: </label> 
       <input type="file" ng2FileSelect [uploader]="uploader" multiple />
   </div>
 </div>
@@ -38,7 +38,7 @@
         <div ng2FileDrop
              [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
              (fileOver)="fileOverBase($event)"
-             [uploader]="uploader" 
+             [uploader]="uploader"
              class="card bg-faded p-3 text-center mb-3 my-drop-zone">
              <i class="fa fa-upload fa-3x"></i>
             相片拖放位置

@@ -1,0 +1,58 @@
+<div class="card">
+  <div class="card-header">
+    <form #messageForm="ngForm" (ngSubmit)="messageForm.valid && sendMessage()"> 
+      <div class="input-group">
+        <input type="text" [(ngModel)]="newMessage.contents" name="contents" required class="form-control input-sm" placeholder="輸入留言">
+        <div class="input-group-append">
+          <button [disabled]="!messageForm.valid" class="btn btn-primary">送出</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-body">
+    <div *ngIf="messages?.length === 0">
+      您還没有留言...要打個招呼嗎?
+    </div>
+
+    <ul class="chat">
+      <li *ngFor="let item of messages">
+        <!-- to them -->
+        <div *ngIf="item.senderId == recipientId">
+          <span class="chat-img float-left">
+            <img src="{{item.senderPhotoUrl}}" alt="{{item.senderName}}" class="rounded-circle">
+          </span>
+          <div class="chat-body">
+            <div class="header">
+              <strong class="primary-font">{{item.senderName}}</strong>
+              <small class="text-muted float-right">
+                <span class="fa fa-clock-o">{{item.sendDate  | date: 'M/d hh:mm'}}</span>
+              </small>
+            </div>
+            <p>{{item.contents}}</p>
+          </div>
+        </div>
+
+        <!-- to me -->
+        <div *ngIf="item.senderId != recipientId">
+          <span class="chat-img float-right">
+            <img src="{{item.senderPhotoUrl}}" alt="{{item.senderName}}" class="rounded-circle">
+          </span>
+          <div class="chat-body">
+            <div class="header">
+              <small class="text-muted">
+                <span class="fa fa-clock-o">{{item.sendDate  | date: 'M/d hh:mm'}}</span>
+                <span *ngIf="!item.isRead" class="text-danger">(未讀)</span>
+                <span *ngIf="item.isRead" class="text-success">(已讀 {{item.readDate  | date: 'M/d hh:mm'}})</span>
+              </small>
+              <strong class="primary-font float-right">{{item.senderName}}</strong>
+            </div>
+            <p>{{item.contents}}</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="card-footer">
+    <span class="text-danger">留言時，請注意禮貌，請勿口出惡言。若經查證屬實，將停止會員權利</span>
+  </div>
+</div>

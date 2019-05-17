@@ -21,7 +21,7 @@
     <table class="table table-hover">
       <tr>
         <th style="width: 60%">內容</th>
-        <th style="width: 15%"> 收發者</th>
+        <th style="width: 15%">暱稱</th>
         <th style="width: 15%">日期</th>
         <th style="width: 10%"></th>
       </tr>
@@ -29,12 +29,12 @@
         <td>{{message.contents}}</td>
         <td >
           <div *ngIf="messageContainer != 'Outbox'"  style="cursor: pointer"
-                [routerLink]="['/member',message.senderId,'detail']" [queryParams]="{tab: 3}">
+                [routerLink]="['/myData/myThread',message.senderId]" [queryParams]="{tab: 3}">
                 <img src={{message?.senderPhotoUrl}} class="img-circle rounded-circle mr-1">
                 <strong>{{message.senderName}}</strong>
           </div>
           <div *ngIf="messageContainer == 'Outbox'" style="cursor: pointer"
-                [routerLink]="['/member',message.recipientId,'detail']" [queryParams]="{tab: 3}">
+                [routerLink]="['/myData/myThread',message.recipientId]" [queryParams]="{tab: 3}">
                 <img src={{message?.recipientPhotoUrl}} class="img-circle rounded-circle mr-1">
                 <strong>{{message.recipientName}}</strong>
           </div>

@@ -9,6 +9,8 @@ import { MyLikersComponent } from './my-likers/my-likers.component';
 import { MyLikersResolverService } from './my-likers/my-likers-resolver.service';
 import { MyMessagesComponent } from './my-messages/my-messages.component';
 import { MyMessagesResolverService } from './my-messages/my-messages-resolver.service';
+import { MyMessagesThreadComponent } from './my-messages-thread/my-messages-thread.component';
+import { MyMessagesThreadResolverService } from './my-messages-thread/my-messages-thread-resolver.service';
 
 const routes: Routes = [
   {
@@ -20,13 +22,15 @@ const routes: Routes = [
       { path: 'myPhotos', component: MyPhotosComponent, resolve: { apiResult: MyPhotosResolverService } },
       { path: 'myLikers', component: MyLikersComponent, resolve: { apiResult: MyLikersResolverService } },
       { path: 'myMessages', component: MyMessagesComponent, resolve: { apiResult: MyMessagesResolverService }},
+      { path: 'myThread/:recipientId', component: MyMessagesThreadComponent },
+          //  , resolve: { apiResult: MyMessagesThreadResolverService }},
       { path: '', redirectTo: 'myDetail', pathMatch: 'full' },
       { path: '**', redirectTo: 'myDetail', pathMatch: 'full' },
     ]
   }
 
 ];
-
+//
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

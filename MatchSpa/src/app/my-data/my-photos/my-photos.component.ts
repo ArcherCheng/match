@@ -19,7 +19,7 @@ export class MyPhotosComponent implements OnInit {
   hasBaseDropZoneOver = false;
   hasAnotherDropZoneOver = false;
   currentMain: UserPhoto;
-  @Output() getUserMainPhotoChange = new EventEmitter<string>();
+  // @Output() getUserMainPhotoChange = new EventEmitter<string>();
 
   constructor(
     private route: ActivatedRoute,
@@ -70,10 +70,11 @@ export class MyPhotosComponent implements OnInit {
       this.currentMain = this.photos.filter(p => p.isMain === true)[0];
       this.currentMain.isMain = false;
       photo.isMain = true;
-      this.getUserMainPhotoChange.emit(photo.photoUrl);
+      // this.getUserMainPhotoChange.emit(photo.photoUrl);
       this.authService.changeUserPhoto(photo.photoUrl);
-      this.authService.currentUser.mainPhotoUrl = photo.photoUrl;
-      localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
+      console.log(this.authService.currentUser);
+      // this.authService.currentUser.mainPhotoUrl = photo.photoUrl;
+      // localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
     }, error => {
       this.alertify.error(error);
     });

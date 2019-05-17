@@ -77,7 +77,7 @@ namespace MatchApi.Controllers
 
             var file = dtoPhotoCreate.File;
             if (file == null || file.Length == 0)
-                return BadRequest("没有檔案上傳");
+                return BadRequest("未選取檔案,無法上傳");
 
             var uploadResult = new ImageUploadResult();
             if (file.Length > 0)
@@ -231,7 +231,7 @@ namespace MatchApi.Controllers
         }
 
         // [HttpGet("{msgId}", Name="GetMessage")]
-        [HttpGet("GetMessage/{msgId}")]
+        [HttpGet("getMessage/{msgId}")]
         public async Task<IActionResult> GetMessage(int userId, int msgId)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -269,7 +269,7 @@ namespace MatchApi.Controllers
             return Ok(dtoMessages);
         }
 
-        [HttpGet("thread/{recipientId}")]
+        [HttpGet("threadMessage/{recipientId}")]
         public async Task<IActionResult> GetMessageThread(int userId, int recipientId)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -280,7 +280,7 @@ namespace MatchApi.Controllers
             return Ok(dotMesasage);
         }
 
-        [HttpPost("CreateMessage")]
+        [HttpPost("createMessage")]
         public async Task<IActionResult> CreateMessage(int userId, [FromBody]DtoMessageCreate dtoMessageCreate)
         {
             var sender = await _repoMember.GetMemberEdit(userId);
@@ -300,8 +300,8 @@ namespace MatchApi.Controllers
             if(await _repoMember.SaveAllAsync()>0) 
             {
                 var  messageToReturn = _mapper.Map<DtoMessageList>(message);
-                return CreatedAtRoute("GetMessage", new {Controller="Message",userId = userId, msgId = message.Id}, messageToReturn);
-                //return Ok(messageToReturn);
+                // return CreatedAtRoute("getMessage", new {Controller="Member",userId = userId, msgId = message.Id}, messageToReturn);
+                return Ok(messageToReturn);
                 //return NoContent();
             } 
             throw new Exception("留言存檔失敗");

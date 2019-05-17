@@ -159,7 +159,7 @@ export class UserService {
   }
 
   sendMessage(userId: number, messape: UserMessage) {
-    return this.http.post(this.baseUrl + 'member/' + userId + '/sendMessage', messape);
+    return this.http.post(this.baseUrl + 'member/' + userId + '/createMessage', messape);
   }
 
   deleteMessage(userId: number, messageId: number ) {
