@@ -17,5 +17,7 @@ namespace MatchApi.Repository
         Task<Message> GetMessage(int msgId);
         Task<PageList<Message>> GetMessagesForUser(ParamsMember para);
         Task<IEnumerable<Message>> GetMessageThread(int myId, int recipientId);
+        Task<IEnumerable<Message>> GetUnreadMessages(int myId);
+
     }
 }

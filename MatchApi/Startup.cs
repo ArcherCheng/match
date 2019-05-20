@@ -103,7 +103,7 @@ namespace MatchApi
             //app.UseHttpsRedirection();
             // app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseCors(x => x.WithOrigins("http://localhost:4200")
-                .AllowAnyHeader().AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+                .AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             app.UseAuthentication();
             app.UseStaticFiles();
             // app.UseMvc();

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/_shared/service/user.service';
 import { AlertifyService } from 'src/app/_shared/service/alertify.service';
 import { AuthService } from 'src/app/_shared/service/auth.service';
-import { FileUploader } from 'ng2-file-upload';
+import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -31,6 +31,10 @@ export class MyPhotosComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: {apiResult: UserPhoto[]} ) => this.photos = data.apiResult);
     this.initializeUploader();
+  }
+
+  fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
   }
 
   initializeUploader() {
@@ -60,9 +64,6 @@ export class MyPhotosComponent implements OnInit {
     };
   }
 
-  fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
-  }
 
   setMainPhoto(photo: UserPhoto)  {
     this.userService.setMainPhoto(this.authService.decodedToken.nameid, photo.id).subscribe(() => {

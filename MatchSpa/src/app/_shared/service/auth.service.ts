@@ -14,13 +14,16 @@ import { UserCondition } from '../interface/user-condition';
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = environment.apiUrl + 'auth/';
-  jwtHelper = new JwtHelperService();
+  private baseUrl = environment.apiUrl + 'auth/';
+  private jwtHelper = new JwtHelperService();
   decodedToken: any;
   currentUser: LoginUser;
-  mainPhotoUrl = new BehaviorSubject<string>('../../assets/user.png');
+  private mainPhotoUrl = new BehaviorSubject<string>('../../assets/user.png');
   currentPhotoUrl = this.mainPhotoUrl.asObservable();
-  condition: UserCondition;
+  private condition: UserCondition;
+  private isSidemenOpen = true;
+  private sideMenuToggle: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isSidemenOpen);
+  isSideMenuToggle = this.sideMenuToggle.asObservable();
 
   constructor(
     private http: HttpClient
@@ -95,6 +98,15 @@ export class AuthService {
     const storage = localStorage.getItem('condition');
     this.condition = JSON.parse(storage);
     return this.condition;
+  }
+
+  // get isSideMenuToggle() {
+  //   return this.sideMenuToggle.asObservable();
+  // }
+
+  doSideMenuToggle() {
+    this.isSidemenOpen = !this.isSidemenOpen;
+    this.sideMenuToggle.next(this.isSidemenOpen);
   }
 
 

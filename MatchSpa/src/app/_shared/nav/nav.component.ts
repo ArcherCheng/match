@@ -9,7 +9,7 @@ import { AlertifyService } from '../service/alertify.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  navbarCollapsed = true;
+  isCollapsed = true;
   photoUrl: string;
 
   constructor(
@@ -31,6 +31,11 @@ export class NavComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigate(['/home']);
+  }
+
+  sideMenuToggle() {
+    this.isCollapsed = !this.isCollapsed;
+    this.authService.doSideMenuToggle();
   }
 
 }

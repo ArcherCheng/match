@@ -170,5 +170,9 @@ export class UserService {
     return this.http.post(this.baseUrl + 'member/' + userId + '/markRead/' + messageId , {}).subscribe();
   }
 
+  getMsgNotifications(userId: number): Observable<UserMessage[]> {
+    return this.http.get<UserMessage[]>(this.baseUrl + 'member/' + userId + '/getUnreadMessages');
+  }
+
 
 }

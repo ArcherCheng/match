@@ -1,53 +1,45 @@
-<nav class="topbar " [ngClass]="{'not-home': router.isActive('/',ture)}">
-  <a [routerLink]="['/']">
-    <img class="brand-logo" src="/assets/imgs/logo.svg" alt="台北單身派對" title="台北單身派對">
-  </a>
-  <span class="">
-    <!-- <img src="{{authService.currentUser.photoUrl || '../../assets/user.png'}}" alt=""> -->
-    <img src="{{photoUrl}}" alt="" id="topbar-photo">
-    {{authService.decodedToken?.unique_name}}
-  </span>
-
-  <span class="split"></span>
-  <button class="navbar-toggler" (click)="navbarCollapsed = !navbarCollapsed" type="button">
+<nav class="top-navbar" [ngClass]="{'not-home': router.isActive('/',ture)}">
+  <button class="navbar-toggler" (click)="sideMenuToggle()" type="button">
     <span class="navbar-toggler-icon">
-      <span *ngIf="navbarCollapsed" class="fa fa-bars"></span>
-      <span *ngIf="!navbarCollapsed" class="fa fa-times"></span>
+      <span class="fa fa-bars"></span>
+      <!-- <span *ngIf="!isCollapsed" class="fa fa-times"></span> -->
     </span>
   </button>
 
-  <div class="navbar-menu">
-    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['/userCondition']"
-      routerLinkActive="router-link-active">開始配對
-    </a>
-    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['/userMatchList/0']"
-      routerLinkActive="router-link-active">配對列表
-    </a>
-    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['/myData/myDetail']"
-      routerLinkActive="router-link-active">我的資料
-    </a>
-    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['/myData/myPhotos']"
-      routerLinkActive="router-link-active">我的相片
-    </a>
-    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['/myData/myLikers']"
-      routerLinkActive="router-link-active">我的最愛
-    </a>
-    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['/myData/myMessages']"
-      routerLinkActive="router-link-active">我的訊息
-    </a>
-    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['auth','login']"
-      routerLinkActive="router-link-active">會員登入
-    </a>
-    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['auth','changePassword']"
-      routerLinkActive="router-link-active">變更密碼
-    </a>
-    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['auth','forgetPassword']"
-      routerLinkActive="router-link-active">忘記密碼
-    </a>
-    <a class="list-group-item list-group-item-action bg-light" [routerLink]="['auth','register']"
-      routerLinkActive="router-link-active">新人註冊
-    </a>
-    <a class="list-group-item list-group-item-action bg-light" (click)="logout()">會員登出
+  <div class="brand-logo">
+    <a [routerLink]="['/home']"><strong>MyMatch.tw</strong>
+      <!-- <img class="brand-img" src="/assets/imgs/logo.svg" alt="MyMatch" title="MyMatch"> -->
     </a>
   </div>
+  <div class="brand-menu">
+    <ul>
+      <li>
+        <a class="" [routerLink]="['/userCondition']" routerLinkActive="router-link-active"><strong>配對條件</strong>
+        </a>
+      </li>
+      <li>
+        <a class="" [routerLink]="['/userMatchList/0']" routerLinkActive="router-link-active"> <strong>配對結果</strong>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="logged-user" *ngIf="authService.isLogin()">
+    <!-- <img src="{{authService.currentUser.photoUrl || '../../assets/user.png'}}" alt=""> -->
+    <img class="img-circle rounded-circle" src="{{photoUrl}}" alt="" id="topbar-photo">
+    <div class="user-name"><span>{{authService.decodedToken?.unique_name}}</span></div>
+    <app-my-messages-alert></app-my-messages-alert>
+    <!--
+    <a class="logout-icon" (click)="logout()" title="登出(Logout)">
+      <span class="fa fa-sign-out fa-2x"></span>
+    </a>
+    -->
+  </div>
+  <div class="login" *ngIf="!authService.isLogin()">
+    <a class="login-icon" [routerLink]="['auth','login']" routerLinkActive="router-link-active" title="登入(Login) ">
+      <span class="fa fa-sign-in fa-2x"></span>
+    </a>
+  </div>
+
 </nav>

@@ -10,6 +10,7 @@ import { EducationPipe } from 'src/app/_shared/pipe/education.pipe';
 import { UserCardComponent } from './user-card/user-card.component';
 import { SexPipe } from './pipe/sex.pipe';
 import { CheckboxReactiveComponent } from './checkbox-reactive/checkbox-reactive.component';
+import { MyMessagesAlertComponent } from '../my-data/my-messages-alert/my-messages-alert.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,8 @@ import { CheckboxReactiveComponent } from './checkbox-reactive/checkbox-reactive
     SexPipe,
     MarryPipe,
     CheckboxReactiveComponent,
+    MyMessagesAlertComponent,
+
   ],
   imports: [
     CommonModule,
@@ -33,6 +36,7 @@ import { CheckboxReactiveComponent } from './checkbox-reactive/checkbox-reactive
     MarryPipe,
     SexPipe,
     CheckboxReactiveComponent,
+    MyMessagesAlertComponent,
 
     RouterModule,
     HttpClientModule,

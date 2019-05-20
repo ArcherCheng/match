@@ -1,13 +1,18 @@
-<div class="myContainer">
-  <header class="header" id="header">
+<div id="all-container">
+  <header id="header">
     <app-nav></app-nav>
   </header>
-  <section class="mainContent" id="mainContent">
+  <div id="main-container">
+    <aside id="aside-nav" *ngIf="isSideMenuOpen$ | async">
+      <app-main-menu></app-main-menu>
+    </aside>
+    <article id="main-article">
       <router-outlet></router-outlet>
-  </section>
-  <aside class="sidebar" id="sidebar">
-  </aside>
-  <footer class="footer" id="footer">
+    </article>
+    <aside id="aside-ads">
+    </aside>
+  </div>
+  <footer id="footer">
     <app-footer></app-footer>
   </footer>
 </div>

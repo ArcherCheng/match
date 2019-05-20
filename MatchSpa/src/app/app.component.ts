@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from './_shared/service/auth.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
@@ -11,8 +11,10 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {   // , OnDestroy
-  title = 'MatchSpa';
+  title = 'MyMatch';
   jwtHelper = new JwtHelperService();
+  asideNavToggle = true;
+  isSideMenuOpen$: Observable<boolean>;
   // subscription: Subscription;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -22,9 +24,19 @@ export class AppComponent implements OnInit {   // , OnDestroy
     if (token) {
       this.authService.decodedToken = this.jwtHelper.decodeToken(token);
     }
+
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.authService.currentUser = JSON.parse(user);
+      // console.log(user);
+      // console.log(this.authService.currentUser);
+    }
+
     // this.subscription = this.router.events.pipe(
     //   filter(event => event instanceof NavigationEnd)
     // ).subscribe(() => window.scrollTo(0, 0));
+
+    this.isSideMenuOpen$ = this.authService.isSideMenuToggle;
   }
 
   // ngOnDestroy() {

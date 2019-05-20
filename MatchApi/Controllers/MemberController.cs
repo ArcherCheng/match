@@ -269,6 +269,18 @@ namespace MatchApi.Controllers
             return Ok(dtoMessages);
         }
 
+        [HttpGet("getUnreadMessages")]
+        public async Task<IActionResult> GetUnreadMessages(int userId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+            
+            var messages = await _repoMember.GetUnreadMessages(userId);
+            var dtoMessages = _mapper.Map<IEnumerable<DtoMessageList>>(messages);
+
+            return Ok(dtoMessages);
+        }
+
         [HttpGet("threadMessage/{recipientId}")]
         public async Task<IActionResult> GetMessageThread(int userId, int recipientId)
         {

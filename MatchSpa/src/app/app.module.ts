@@ -12,6 +12,9 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserPhotosComponent } from './user-photos/user-photos.component';
 import { UserMatchListComponent } from './user-match-list/user-match-list.component';
 import { UserMatchConditionComponent } from './user-match-condition/user-match-condition.component';
+import { MainMenuComponent } from './_shared/main-menu/main-menu.component';
+import { QuestionsComponent } from './_shared/questions/questions.component';
+import { Page404Component } from './_shared/page404/page404.component';
 // import { CheckboxReactiveComponent } from './_shared/checkbox-reactive/checkbox-reactive.component';
 
 export function tokenGetter() {
@@ -27,7 +30,10 @@ export function tokenGetter() {
     UserDetailComponent,
     UserPhotosComponent,
     UserMatchListComponent,
-    UserMatchConditionComponent
+    UserMatchConditionComponent,
+    MainMenuComponent,
+    QuestionsComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule,

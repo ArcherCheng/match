@@ -123,5 +123,17 @@ namespace MatchApi.Repository
 
             return result;
         }
+
+        public async Task<IEnumerable<Message>> GetUnreadMessages(int myId)
+        {
+            var _lastDate = System.DateTime.Now.AddMonths(-1);
+            var result = await _db.Message
+                .Include(x => x.Sender)
+                .Include(x => x.Recipient)
+                .Where(x => x.RecipientId == myId && x.SendDate > _lastDate && x.RecipientDeleted == false && x.IsRead == false)
+                .OrderBy(x => x.SendDate)
+                .ToListAsync();
+            return result;
+        }
     }
 }

@@ -40,7 +40,6 @@ export class RegisterComponent implements OnInit {
 
   loadCheckBoxItem() {
     this.authService.getCheckboxItemList('Blood').subscribe(data => this.bloodOptions = data);
-    console.log(this.bloodOptions);
     this.authService.getCheckboxItemList('Star').subscribe(data => this.starOptions = data);
     this.authService.getCheckboxItemList('City').subscribe(data => this.cityOptions = data);
     this.authService.getCheckboxItemList('Job').subscribe(data => this.jobOptions = data);

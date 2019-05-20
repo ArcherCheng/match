@@ -9,6 +9,7 @@ import { MyPhotosComponent } from './my-photos/my-photos.component';
 import { MyMessagesComponent } from './my-messages/my-messages.component';
 import { MyLikersComponent } from './my-likers/my-likers.component';
 import { MyMessagesThreadComponent } from './my-messages-thread/my-messages-thread.component';
+// import { MyMessagesAlertComponent } from './my-messages-alert/my-messages-alert.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MyMessagesThreadComponent } from './my-messages-thread/my-messages-thre
     MyMessagesComponent,
     MyMessagesThreadComponent,
     MyLikersComponent,
+    // MyMessagesAlertComponent,
   ],
   imports: [
     CommonModule,
