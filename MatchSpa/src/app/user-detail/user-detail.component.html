@@ -16,13 +16,13 @@
   <p><strong>居住城市: {{user.city}}</strong></p>
   <p><strong>宗教信仰: {{user.religion}}</strong> </p>
 </div>
-<div class="member-introduction">
+<div>
   <h4>自我介紹</h4>
-  <p>{{user.introduction}}</p>
+  <p class="pre-text">{{user.introduction}}</p>
 </div>
 <div>
   <h4>尋找對像</h4>
-  <p>{{user.likeCondition}}</p>
+  <p class="pre-text">{{user.likeCondition}}</p>
 </div>
 <div>
   <a class="btn btn-primary btn-block" [routerLink]="['/userPhotos',user.userId]" routerLinkActive="router-link-active">相片瀏覽</a>

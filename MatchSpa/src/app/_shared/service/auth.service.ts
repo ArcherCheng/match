@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { LoginUser } from '../interface/loginUser';
+import { LoginUser, ForgetPassword, ChangePassword } from '../interface/loginUser';
 import { HttpClient } from '@angular/common/http';
 import { CheckboxItem } from '../interface/checkbox-item';
 import { Register } from '../interface/register';
@@ -47,6 +47,14 @@ export class AuthService {
         }
       })
     );
+  }
+
+  forgetPassword(model: ForgetPassword ) {
+    return this.http.post(this.baseUrl + 'forgetPassword', model);
+  }
+
+  changePassword(model: ChangePassword ) {
+    return this.http.post(this.baseUrl + 'changePassword', model);
   }
 
   logout() {
@@ -100,9 +108,9 @@ export class AuthService {
     return this.condition;
   }
 
-  // get isSideMenuToggle() {
-  //   return this.sideMenuToggle.asObservable();
-  // }
+  get XisSideMenuToggle() {
+    return this.sideMenuToggle.asObservable();
+  }
 
   doSideMenuToggle() {
     this.isSidemenOpen = !this.isSidemenOpen;

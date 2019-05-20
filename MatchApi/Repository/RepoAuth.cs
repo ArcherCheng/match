@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MatchApi.Models;
 using Microsoft.EntityFrameworkCore;
+using MatchApi.Helpers;
 
 namespace MatchApi.Repository
 {
@@ -32,7 +33,7 @@ namespace MatchApi.Repository
             if(user == null)
                 return null;
 
-            if(!verifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            if(!PasswordHash.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
                 return null;
 
             return user;
@@ -41,7 +42,7 @@ namespace MatchApi.Repository
         public async Task<Member> Register(Member user, string password)
         {
             byte[] passwordHash, passwordSalt;
-            createPasswordHash(password, out passwordHash, out passwordSalt);
+            PasswordHash.CreatePasswordHash(password, out passwordHash, out passwordSalt);
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
@@ -60,26 +61,33 @@ namespace MatchApi.Repository
             return true;
         }
 
-        private bool verifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
-        {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
-            {
-                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-                for (int i = 0; i < computedHash.Length; i++)
-                {
-                    if (computedHash[i] != passwordHash[i]) return false;
-                }
-                return true;
-            }
-        }
+        // private bool verifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        // {
+        //     using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
+        //     {
+        //         var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+        //         for (int i = 0; i < computedHash.Length; i++)
+        //         {
+        //             if (computedHash[i] != passwordHash[i]) return false;
+        //         }
+        //         return true;
+        //     }
+        // }
         
-        private void createPasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        // private void createPasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        // {
+        //     using (var hmac = new System.Security.Cryptography.HMACSHA512())
+        //     {
+        //         passwordSalt = hmac.Key;
+        //         passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+        //     }
+        // }
+
+        public async Task<Member> GetMember(string email, string phone)
         {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
-            {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-            }
-        }        
+            var user = await _db.Member.FirstOrDefaultAsync(p => p.Phone == phone && p.Email == email);
+
+            return user;
+        }
     }
 }

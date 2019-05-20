@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ForgetPasswordComponent implements OnInit {
   model: any = {};
-  
+  // newPassword: string;
+
   constructor(
     private authService: AuthService,
     private alertify: AlertifyService,
@@ -21,13 +22,15 @@ export class ForgetPasswordComponent implements OnInit {
   }
 
   forgetPassword() {
-    this.authService.login(this.model).subscribe(
+    this.authService.forgetPassword(this.model).subscribe(
       next => {
-        this.alertify.success('變更密碼成玏');
+        this.alertify.success('變更密碼成玏:' + next);
+        // this.newPassword = next.toString();
+        alert('新的密碼:' + next);
       }, error => {
-        this.alertify.error('變更密碼失敗:' + error);
+        this.alertify.error('取回密碼失敗:' + error);
       }, () => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/auth/login']);
       }
     );
   }
