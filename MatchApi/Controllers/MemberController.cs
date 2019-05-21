@@ -64,7 +64,7 @@ namespace MatchApi.Controllers
         }
 
         [HttpPost("uploadPhotos")]
-        public async Task<IActionResult> AddPhotoForUser(int userId, [FromForm]DtoPhotoCreate dtoPhotoCreate)
+        public async Task<IActionResult> uploadPhotos(int userId, [FromForm]DtoPhotoCreate dtoPhotoCreate)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
