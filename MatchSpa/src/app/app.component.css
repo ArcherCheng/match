@@ -4,7 +4,7 @@
   padding: 0;
 }
 
-#all-container {
+#top-container {
   display: flex;
   flex-direction: column;
 }
@@ -44,7 +44,8 @@
   width: 100%;
 }
 
-@media (max-width: 767px) {
+/* qHD=960*540 HD=1280*720 FHD=1920*1080 QHD=2560*1440 4K=3840*2160  */
+@media (max-width: 720px) {
   #main-container {
     display: flex;
     flex-direction: column;
