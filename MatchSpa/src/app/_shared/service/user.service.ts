@@ -112,8 +112,12 @@ export class UserService {
     return this.http.delete(this.baseUrl + 'member/' + userId + '/delPhoto/' + id );
   }
 
-  addLiker(userId: number, likeId: number) {
-    return this.http.post(this.baseUrl + 'member/' + userId + '/addLiker/' + likeId, {});
+  addMyLiker(userId: number, likeId: number) {
+    return this.http.post(this.baseUrl + 'member/' + userId + '/addMyLiker/' + likeId, {});
+  }
+
+  deleteMyLiker(userId: number, likeId: number) {
+    return this.http.delete(this.baseUrl + 'member/' + userId + '/deleteMyLiker/' + likeId, {});
   }
 
   getMyLikerList(userId: number, page?, itemsPerPage?): Observable<PaginatedResult<User[]>> {

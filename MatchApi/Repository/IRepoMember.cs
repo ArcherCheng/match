@@ -9,6 +9,7 @@ namespace MatchApi.Repository
     {
         Task<Member> GetMemberEdit(int userId);
         Task<bool> AddMyLiker(int userId, int likeId);
+        Task<bool> DeleteMyLiker(int userId, int likeId);
         Task<PageList<Member>> GetMyLikerPageList(int userId, ParamsMember para);
         Task<IEnumerable<Member>> GetMyLikerList(int userId);
         bool HasMainPhoto(int userId);

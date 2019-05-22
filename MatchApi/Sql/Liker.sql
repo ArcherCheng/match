@@ -5,29 +5,21 @@
 go
 create table Liker
 (
-	PartyId       int               not null,
 	UserId        int               not null,
 	LikerId       int               not null,
 	AddedDate     datetime          not null,
+	IsDelete      bit               not null,
+	DeleteDate    datetime          null,
 
 	--以下每檔資料表都會有這些欄位
 	WriteType     integer        null,
 	WriteTime     datetime       null,
 	WriteUser     nvarchar(32)   null,
 	WriteIp       nvarchar(32)   null,
-	constraint Pk_liker primary key (PartyId,UserId,LikerId) 
+	constraint Pk_liker primary key (UserId,LikerId) 
 );
 go
 
-
--- alter table Liker drop constraint Liker_PartyId
-go
-alter table Liker add constraint Liker_Party
-      foreign key (PartyId)
-      references Party(PartyId)
-	  ON UPDATE CASCADE
-	  ON DELETE NO ACTION
-go
 
 -- alter table Liker drop constraint Liker_MyLiker
 go

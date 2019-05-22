@@ -58,14 +58,31 @@ namespace MatchApi.Repository
             var matchList = _db.Member
                 .Where(x => x.Sex != memberCondition.Sex)
                 .OrderByDescending(p => p.ActiveDate).AsQueryable();
-        
-            matchList = matchList.Where(x =>
-               (x.Marry >= memberCondition.MarryMin && x.Marry <= memberCondition.MarryMax) &&
-               (x.BirthYear >= memberCondition.YearMin && x.BirthYear <= memberCondition.YearMax) &&
-               (x.Education >= memberCondition.EducationMin && x.Education <= memberCondition.EducationMax) &&
-               (x.Heights >= memberCondition.HeightsMin && x.Heights <= memberCondition.HeightsMax) &&
-               (x.Weights >= memberCondition.WeightsMin && x.Weights <= memberCondition.WeightsMax) 
-               );
+            
+            if (memberCondition.MarryMin > 0 && memberCondition.MarryMax > 0) 
+            {
+                matchList = matchList.Where(x => (x.Marry >= memberCondition.MarryMin && x.Marry <= memberCondition.MarryMax));
+            }
+
+            if (memberCondition.YearMin > 0 && memberCondition.YearMax > 0) 
+            {
+                matchList = matchList.Where(x => (x.BirthYear >= memberCondition.YearMin && x.BirthYear <= memberCondition.YearMax));
+            }
+
+            if (memberCondition.EducationMin > 0 && memberCondition.EducationMax > 0) 
+            {
+                matchList = matchList.Where(x => (x.Education >= memberCondition.EducationMin && x.Education <= memberCondition.EducationMax));
+            }
+
+            if (memberCondition.HeightsMin > 0 && memberCondition.HeightsMax > 0) 
+            {
+                matchList = matchList.Where(x => (x.Heights >= memberCondition.HeightsMin && x.Heights <= memberCondition.HeightsMax));
+            }            
+
+            if (memberCondition.WeightsMin > 0 && memberCondition.WeightsMax > 0) 
+            {
+                matchList = matchList.Where(x => (x.Weights >= memberCondition.WeightsMin && x.Weights <= memberCondition.WeightsMax));
+            }                  
 
             if(!string.IsNullOrEmpty(memberCondition.BloodInclude))
             {

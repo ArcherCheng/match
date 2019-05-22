@@ -229,7 +229,31 @@ namespace MatchApi.Controllers
             return Ok(dtoUserList);
         }
 
-        [HttpPost("addLiker/{likeId}")]
+        [HttpDelete("deleteMyLiker/{likeId}")]
+        public async Task<IActionResult> DeleteMyliker(int userId, int likeId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var member1 = await _repoMember.GetMemberEdit(userId);
+            if (member1 == null)
+                return Unauthorized();
+
+            var member2 = await _repoMember.GetMemberEdit(likeId);
+            if (member2 == null)
+                return Unauthorized();
+
+            var success = await _repoMember.DeleteMyLiker(userId, likeId);
+
+            if (!success)
+                return BadRequest("取消好友失敗");
+
+            // return NoContent();
+            // return Ok( "成功加入我的最愛" );
+            return Ok();
+        }
+
+        [HttpPost("addMyLiker/{likeId}")]
         public async Task<IActionResult> AddMyliker(int userId, int likeId)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -248,7 +272,9 @@ namespace MatchApi.Controllers
             if (!success)
                 return BadRequest("加入失敗,請檢查您的已加入名單是否已經存在了");
 
-            return Ok("成功加入我的最愛");
+            // return NoContent();
+            // return Ok( "成功加入我的最愛" );
+            return Ok();
         }
 
         // [HttpGet("{msgId}", Name="GetMessage")]

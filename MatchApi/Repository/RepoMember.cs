@@ -16,20 +16,43 @@ namespace MatchApi.Repository
         public async Task<bool> AddMyLiker(int userId, int likeId)
         {
             var liker = await _db.Liker.FirstOrDefaultAsync(x => x.UserId == userId && x.LikerId == likeId);
-            if (liker != null)
-                return false;
+            if (liker != null){
+                // return false;
+                // liker.DeleteDate = null;
+                liker.IsDelete = false;
+                _db.Update(liker);
+             } else {
+                var result = new Liker()
+                {
+                    UserId = userId,
+                    LikerId = likeId,
+                    AddedDate = System.DateTime.Now,
+                    IsDelete = false         
+                };
+                _db.Add(result);
+             }
 
-            var result = new Liker()
-            {
-                UserId = userId,
-                LikerId = likeId,
-                AddedDate = System.DateTime.Now
-            };
-            _db.Add(result);
             _db.SaveChanges();
 
             return true;
         }
+
+        public async Task<bool> DeleteMyLiker(int userId, int likeId)
+        {
+            var liker = await _db.Liker.FirstOrDefaultAsync(x => x.UserId == userId && x.LikerId == likeId);
+            if (liker == null){
+                return false;
+             }
+
+            liker.IsDelete = true;
+            liker.DeleteDate = System.DateTime.Now;
+
+            _db.Update(liker);
+            _db.SaveChanges();
+
+            return true;
+        }
+
 
         public async Task<Member> GetMemberEdit(int userId)
         {
@@ -40,7 +63,7 @@ namespace MatchApi.Repository
         public async Task<IEnumerable<Member>> GetMyLikerList(int userId)
         {
             var likerList = await _db.Liker
-                .Where(x => x.UserId == userId)
+                .Where(x => x.UserId == userId && x.IsDelete == false)
                 .Select(x => x.LikerNavigation)
                 .ToListAsync();
             return likerList;
@@ -49,7 +72,7 @@ namespace MatchApi.Repository
         public async Task<PageList<Member>> GetMyLikerPageList(int userId, ParamsMember para)
         {
             var likerList = _db.Liker
-                .Where(x => x.UserId == userId)
+                .Where(x => x.UserId == userId && x.IsDelete == false)
                 .Select(x => x.LikerNavigation)
                 .AsQueryable();
             return await PageList<Member>.CreateAsync(likerList, para.PageNumber, para.PageSize);
@@ -61,6 +84,7 @@ namespace MatchApi.Repository
 
             return result;
         }
+        
         public async Task<MemberPhoto> GetMainPhoto(int userId)
         {
             var result = await _db.MemberPhoto.FirstOrDefaultAsync(x => x.UserId == userId && x.IsMain);

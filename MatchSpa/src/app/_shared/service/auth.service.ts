@@ -18,7 +18,7 @@ export class AuthService {
   private jwtHelper = new JwtHelperService();
   decodedToken: any;
   currentUser: LoginUser;
-  private mainPhotoUrl = new BehaviorSubject<string>('../../assets/user.png');
+  private mainPhotoUrl = new BehaviorSubject<string>('../../assets/imgs/user.png');
   currentPhotoUrl = this.mainPhotoUrl.asObservable();
   private condition: UserCondition;
   private isSidemenOpen = true;
