@@ -63,6 +63,14 @@ namespace MatchApi.Controllers
             return Ok(dtoPhoto);
         }
 
+        [HttpGet("getPhoto/{photoId}")]
+        public async Task<IActionResult> GetPhoto(int photoId)
+        {
+            var photo = await _repoMember.GetPhoto(photoId);
+            var dtoPhoto = _mapper.Map<DtoPhotoList>(photo);
+            return Ok(dtoPhoto);
+        }
+
         [HttpPost("uploadPhotos")]
         public async Task<IActionResult> uploadPhotos(int userId, [FromForm]DtoPhotoCreate dtoPhotoCreate)
         {
@@ -99,6 +107,7 @@ namespace MatchApi.Controllers
 
             var photo = _mapper.Map<MemberPhoto>(dtoPhotoCreate);
             photo.UserId = userId;
+            photo.AddedDate = System.DateTime.Now;
             if (!_repoMember.HasMainPhoto(userId)) 
                 photo.IsMain = true;
 
@@ -106,7 +115,8 @@ namespace MatchApi.Controllers
             if (await _repoMember.SaveAllAsync()>0)
             {
                 var dtoPhotoList = _mapper.Map<DtoPhotoList>(photo);
-                return CreatedAtRoute("GetPhoto", new { id = photo.Id }, dtoPhotoList);
+                //return CreatedAtRoute("getPhoto", new { id = photo.Id }, dtoPhotoList);
+                return Ok(dtoPhotoList);
             }
             return BadRequest("無法上傳新增相片");
         }
@@ -219,9 +229,20 @@ namespace MatchApi.Controllers
             return Ok(dtoUserList);
         }
 
-        [HttpGet("addLiker/{likeId}")]
+        [HttpPost("addLiker/{likeId}")]
         public async Task<IActionResult> AddMyliker(int userId, int likeId)
         {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var member1 = await _repoMember.GetMemberEdit(userId);
+            if (member1 == null)
+                return Unauthorized();
+
+            var member2 = await _repoMember.GetMemberEdit(likeId);
+            if (member2 == null)
+                return Unauthorized();
+
             var success = await _repoMember.AddMyLiker(userId, likeId);
 
             if (!success)

@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/_shared/service/user.service';
 import { AlertifyService } from 'src/app/_shared/service/alertify.service';
 import { AuthService } from 'src/app/_shared/service/auth.service';
-import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
-import { environment } from 'src/environments/environment.prod';
+import { FileUploader } from 'ng2-file-upload';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-my-photos',
@@ -40,14 +40,15 @@ export class MyPhotosComponent implements OnInit {
   initializeUploader() {
     this.uploader = new FileUploader({
       url: this.baseUrl + 'member/' + this.authService.decodedToken.nameid + '/uploadPhotos',
+      method: 'POST',
       authToken: 'Bearer ' + localStorage.getItem('token'),
       isHTML5: true,
       allowedFileType: ['image'],
       removeAfterUpload: true,
       autoUpload: false,
-      maxFileSize: 20 * 1024 * 1024
+      maxFileSize: 10 * 1024 * 1024
     });
-    this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
+    this.uploader.onAfterAddingFile = ((file) => {file.withCredentials = false; });
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {

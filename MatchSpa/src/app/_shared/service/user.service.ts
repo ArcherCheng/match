@@ -112,6 +112,10 @@ export class UserService {
     return this.http.delete(this.baseUrl + 'member/' + userId + '/delPhoto/' + id );
   }
 
+  addLiker(userId: number, likeId: number) {
+    return this.http.post(this.baseUrl + 'member/' + userId + '/addLiker/' + likeId, {});
+  }
+
   getMyLikerList(userId: number, page?, itemsPerPage?): Observable<PaginatedResult<User[]>> {
     const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
     let params = new HttpParams();
