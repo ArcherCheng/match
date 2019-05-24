@@ -21,9 +21,12 @@ export class AuthService {
   private mainPhotoUrl = new BehaviorSubject<string>('../../assets/imgs/user.png');
   currentPhotoUrl = this.mainPhotoUrl.asObservable();
   private condition: UserCondition;
-  private isSidemenOpen = true;
+  private isSidemenOpen = false;
   private sideMenuToggle: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isSidemenOpen);
   isSideMenuToggle = this.sideMenuToggle.asObservable();
+  get isSideMenuToggleX() {
+    return this.sideMenuToggle.asObservable();
+  }
 
   constructor(
     private http: HttpClient
@@ -67,12 +70,12 @@ export class AuthService {
   isLogin(): boolean {
     const token = localStorage.getItem('token');
     const isTokenExpired = this.jwtHelper.isTokenExpired(token);
-    // if (this.decodedToken === undefined && isTokenExpired === false) {
-    //   this.decodedToken = this.jwtHelper.decodeToken(token);
-    //   const user = localStorage.getItem('user');
-    //   this.currentUser = JSON.parse(user);
-    //   this.changeUserPhoto(this.currentUser.mainPhotoUrl);
-    // }
+    if (this.decodedToken === undefined && isTokenExpired === false) {
+      this.decodedToken = this.jwtHelper.decodeToken(token);
+      const user = localStorage.getItem('user');
+      this.currentUser = JSON.parse(user);
+      this.changeUserPhoto(this.currentUser.mainPhotoUrl);
+    }
     return !isTokenExpired;
   }
 
@@ -108,9 +111,6 @@ export class AuthService {
     return this.condition;
   }
 
-  get XisSideMenuToggle() {
-    return this.sideMenuToggle.asObservable();
-  }
 
   doSideMenuToggle() {
     this.isSidemenOpen = !this.isSidemenOpen;

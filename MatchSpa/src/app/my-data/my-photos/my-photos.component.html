@@ -7,7 +7,7 @@
   </p> -->
   <div class="row">
     <div class="col-sm-2" *ngFor="let item of photos">
-      <img src="{{item.photoUrl}}" class="img-thumbnail img-fluid">
+      <img src="{{item.photoUrl}}" class="img-thumbnail img-center">
       <div class="text-center">
         <button class="btn btn-sm" type="button" (click)="setMainPhoto(item)" title="設為頭像"
           [ngClass]="item.isMain ? 'btn-success active' : 'btn-default'" [disabled]="item.isMain">

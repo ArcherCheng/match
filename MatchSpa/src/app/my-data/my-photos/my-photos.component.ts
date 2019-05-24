@@ -74,9 +74,9 @@ export class MyPhotosComponent implements OnInit {
       photo.isMain = true;
       // this.getUserMainPhotoChange.emit(photo.photoUrl);
       this.authService.changeUserPhoto(photo.photoUrl);
-      console.log(this.authService.currentUser);
-      // this.authService.currentUser.mainPhotoUrl = photo.photoUrl;
-      // localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
+      // console.log(this.authService.currentUser);
+      this.authService.currentUser.mainPhotoUrl = photo.photoUrl;
+      localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
     }, error => {
       this.alertify.error(error);
     });
