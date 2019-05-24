@@ -13,7 +13,7 @@ import { filter } from 'rxjs/operators';
 export class AppComponent implements OnInit {   // , OnDestroy
   title = 'MyMatch';
   jwtHelper = new JwtHelperService();
-  asideNavToggle = true;
+  // asideNavToggle = true;
   isSideMenuOpen$: Observable<boolean>;
   // subscription: Subscription;
 
@@ -38,6 +38,8 @@ export class AppComponent implements OnInit {   // , OnDestroy
 
     this.isSideMenuOpen$ = this.authService.isSideMenuToggle;
   }
+
+
 
   // ngOnDestroy() {
   //   this.subscription.unsubscribe();

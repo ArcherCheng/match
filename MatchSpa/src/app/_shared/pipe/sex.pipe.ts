@@ -6,7 +6,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SexPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    return null;
+    let retValue: string;
+    switch (value) {
+      case 1:
+        retValue = '男';
+        break;
+      case 2:
+        retValue = '女';
+        break;
+    }
+    return retValue;
   }
 
 }

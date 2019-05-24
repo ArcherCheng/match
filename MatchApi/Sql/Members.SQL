@@ -204,6 +204,7 @@ create table MemberCondition
 (
 	UserId      int not null,
 	Sex         int not null,
+	MatchSex    int not null,
 
 	--以下為個人基本條件
     MarryMin         int      not null,--婚姻狀況(1=單身未婚, 2=二春無小孩, 3=二春有小孩, 4=都可以)

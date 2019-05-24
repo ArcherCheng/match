@@ -56,7 +56,7 @@ namespace MatchApi.Repository
             }
             
             var matchList = _db.Member
-                .Where(x => x.Sex != memberCondition.Sex)
+                .Where(x => x.Sex == memberCondition.MatchSex)
                 .OrderByDescending(p => p.ActiveDate).AsQueryable();
             
             if (memberCondition.MarryMin > 0 && memberCondition.MarryMax > 0) 

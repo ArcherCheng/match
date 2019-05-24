@@ -1,13 +1,24 @@
 <div class="main-menu">
   <ul>
     <li>
+      <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['/userCondition']"
+        routerLinkActive="router-link-active">配對條件
+      </a>
+    </li>
+    <li>
+      <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['/userMatchList/0']"
+        routerLinkActive="router-link-active">配對結果
+      </a>
+    </li>
+
+    <li>
       <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['/myData/myDetail']"
         routerLinkActive="router-link-active">我的資料
       </a>
     </li>
     <li>
       <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['/myData/myPhotos']"
-        routerLinkActive="router-link-active">我的相片
+        routerLinkActive="router-link-active">我的相簿
       </a>
     </li>
     <li>
@@ -33,6 +44,11 @@
     <li>
       <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['auth','register']"
         routerLinkActive="router-link-active">新人註冊
+      </a>
+    </li>
+    <li>
+      <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['auth','login']"
+        routerLinkActive="router-link-active">登入系統
       </a>
     </li>
     <li>

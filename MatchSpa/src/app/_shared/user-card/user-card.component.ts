@@ -23,34 +23,5 @@ export class UserCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  addMyLiker(likerId: number) {
-    if (!this.authService.isLogin()) {
-      this.alertify.warning('請先登入系統');
-      this.router.navigate(['/auth/login']);
-    }
-
-    this.alertify.confirm('確定要加入我的最愛嗎?', () => {
-      this.userService.addMyLiker(this.authService.decodedToken.nameid, likerId).subscribe(() => {
-        this.alertify.success('加入成功');
-      }, error => {
-        this.alertify.error('加入失敗:' + error);
-      });
-    });
-  }
-
-  deleteMyLiker(likerId: number) {
-    if (!this.authService.isLogin()) {
-      this.alertify.warning('請先登入系統');
-      this.router.navigate(['/auth/login']);
-    }
-
-    this.alertify.confirm('確定要移出我的最愛嗎?', () => {
-      this.userService.deleteMyLiker(this.authService.decodedToken.nameid, likerId).subscribe(() => {
-        this.alertify.success('移出成功');
-      }, error => {
-        this.alertify.error('移出失敗:' + error);
-      });
-    });
-  }
 
 }

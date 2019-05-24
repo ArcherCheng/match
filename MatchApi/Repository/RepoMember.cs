@@ -19,7 +19,7 @@ namespace MatchApi.Repository
             if (liker != null){
                 // return false;
                 // liker.DeleteDate = null;
-                liker.IsDelete = false;
+                liker.IsDelete = false; 
                 _db.Update(liker);
              } else {
                 var result = new Liker()
@@ -63,7 +63,7 @@ namespace MatchApi.Repository
         public async Task<IEnumerable<Member>> GetMyLikerList(int userId)
         {
             var likerList = await _db.Liker
-                .Where(x => x.UserId == userId && x.IsDelete == false)
+                .Where(x => x.UserId == userId && !x.IsDelete && !x.LikerNavigation.IsCloseData)
                 .Select(x => x.LikerNavigation)
                 .ToListAsync();
             return likerList;
@@ -72,7 +72,7 @@ namespace MatchApi.Repository
         public async Task<PageList<Member>> GetMyLikerPageList(int userId, ParamsMember para)
         {
             var likerList = _db.Liker
-                .Where(x => x.UserId == userId && x.IsDelete == false)
+                .Where(x => x.UserId == userId && !x.IsDelete && !x.LikerNavigation.IsCloseData)
                 .Select(x => x.LikerNavigation)
                 .AsQueryable();
             return await PageList<Member>.CreateAsync(likerList, para.PageNumber, para.PageSize);

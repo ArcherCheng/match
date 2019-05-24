@@ -36,6 +36,9 @@ export class NavComponent implements OnInit {
   sideMenuToggle() {
     this.isCollapsed = !this.isCollapsed;
     this.authService.doSideMenuToggle();
+    if (this.isCollapsed) {
+      window.scrollTo(0, 0);
+    }
   }
 
 }

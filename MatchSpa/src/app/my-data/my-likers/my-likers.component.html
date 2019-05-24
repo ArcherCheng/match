@@ -1,13 +1,49 @@
+<div class="memu-title">
+  <h3>我的最愛名單</h3>
+</div>
 <div class="jumbotron container-fluid">
   <div class="row">
     <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let user of userList">
-      <app-user-card [user]=user></app-user-card>
+      <div class="card">
+        <div class="card-img-wrapper">
+          <img class="card-img-top" src="{{user.mainPhotoUrl || '../../assets/imgs/user.png'}}" alt="{{user.nickName}}">
+          <!-- <img class="card-img-top" src="{{photoUrl}}" alt="{{member.lastName}}"> -->
+        </div>
+        <app-user-card [user]=user></app-user-card>
+        <div class="card-footer">
+          <ul class="list-inline member-icons animate text-center">
+            <li class="list-inline-item">
+              <a class="btn btn-primary" [routerLink]="['/userDetail',user.userId]" title="個人資料">
+                <!-- [queryParams]="{partyId: currentPartyId}" -->
+                <i class="fa fa-user"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <button class="btn btn-warning" [routerLink]="['/myData/myThread',user.userId]" title="留言訊息">
+                <!-- [queryParams]="{tab: 3}" -->
+                <i class="fa fa-envelope"></i>
+              </button>
+            </li>
+            <li class="list-inline-item">
+              <button class="btn btn-danger" (click)="addMyLiker(user.userId)" title="加入我的最愛">
+                <i class="fa fa-heart"></i>
+              </button>
+            </li>
+            <li class="list-inline-item">
+              <button class="btn btn-secondary" (click)="deleteMyLiker(user.userId)" title="移出我的最愛">
+                <i class="fa fa-heartbeat"></i>
+              </button>
+            </li>
+
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 <div class="d-flex justify-content-center">
-  <pagination [boundaryLinks]="true" [rotate]="true" [maxSize]="1" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
-    [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)" previousText="上頁"
-    nextText="下頁" firstText="首頁" lastText="尾頁">
+  <pagination [boundaryLinks]="true" [rotate]="true" [maxSize]="1" [totalItems]="pagination.totalItems"
+    [(ngModel)]="pagination.currentPage" [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)"
+    previousText="上頁" nextText="下頁" firstText="首頁" lastText="尾頁">
   </pagination>
 </div>

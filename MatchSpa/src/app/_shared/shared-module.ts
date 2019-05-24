@@ -11,6 +11,7 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { SexPipe } from './pipe/sex.pipe';
 import { CheckboxReactiveComponent } from './checkbox-reactive/checkbox-reactive.component';
 import { MyMessagesAlertComponent } from '../my-data/my-messages-alert/my-messages-alert.component';
+import { FbLikeComponent } from './social-buttons/FbLikeComponent';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { MyMessagesAlertComponent } from '../my-data/my-messages-alert/my-messag
     MarryPipe,
     CheckboxReactiveComponent,
     MyMessagesAlertComponent,
-
+    FbLikeComponent
   ],
   imports: [
     CommonModule,
@@ -37,6 +38,7 @@ import { MyMessagesAlertComponent } from '../my-data/my-messages-alert/my-messag
     SexPipe,
     CheckboxReactiveComponent,
     MyMessagesAlertComponent,
+    FbLikeComponent,
 
     RouterModule,
     HttpClientModule,

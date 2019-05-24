@@ -1,19 +1,27 @@
+<div class="memu-title">
+  <h3>我的配對條件設定</h3>
+</div>
 <div class="jumbotron container-fluid">
-  <div class="row">
-    <h3 class="text-primary">我的配對條件設定</h3>
-  </div>
   <!-- <p class="text-danger">(空白或零為不設定條件)</p> -->
   <div class="row">
     <div class="col-12">
       <form [formGroup]="myFormGroup" (ngSubmit)="onSubmit()">
         <div class="form-row">
-            <div class="form-group col-6">
-                <label>我的性別:</label>
-                <select class="form-control" id="sex" name="sex" formControlName="sex">
-                  <option value="1">1.男生</option>
-                  <option value="2">2.女生</option>
-                </select>
-              </div>
+          <div class="form-group col-6">
+            <label>我的性別:</label>
+            <select class="form-control" id="sex" name="sex" formControlName="sex">
+              <option value="1">1.男生</option>
+              <option value="2">2.女生</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label>尋找對像性別:</label>
+            <select class="form-control" id="matchSex" name="matchSex" formControlName="matchSex">
+              <option value="1">1.男生</option>
+              <option value="2">2.女生</option>
+            </select>
+          </div>
+
         </div>
         <div class="form-row">
           <div class="form-group col-6">
@@ -131,10 +139,10 @@
   </div>
 </div>
 
-
+<!--
   <p>Form valid: {{ myFormGroup.valid }} </p>
   <p>Form value: {{ myFormGroup.value | json }}</p>
-
+ -->
 
 <!--
     <div class="row">

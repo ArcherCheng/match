@@ -1,4 +1,4 @@
-<div (click)="openMyMessage()" class="messageBox">
+<div (click)="openMyMessage()" class="messageBox" title="我的訊息">
   <i class="message-fa" *ngIf="!messages.length" class="fa fa-envelope-o"></i>
   <i class="message-fa" *ngIf="messages.length" class="fa fa-envelope"></i>
   <span class="message-len" *ngIf="messages.length">{{messages.length}} </span>

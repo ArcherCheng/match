@@ -1,16 +1,18 @@
-<nav class="top-navbar" [ngClass]="{'not-home': router.isActive('/',ture)}">
-  <button class="navbar-toggler" (click)="sideMenuToggle()" type="button">
-    <span class="navbar-toggler-icon">
+<nav class="top-navbar">
+  <button class="navbar-toggler" (click)="sideMenuToggle()" type="button" title="功能表切換">
       <span class="fa fa-bars"></span>
       <!-- <span *ngIf="!isCollapsed" class="fa fa-times"></span> -->
-    </span>
   </button>
 
   <div class="brand-logo">
-    <a [routerLink]="['/home']"><strong>MyMatch.tw</strong>
-      <!-- <img class="brand-img" src="/assets/imgs/logo.svg" alt="MyMatch" title="MyMatch"> -->
+    <a [routerLink]="['/home']" title="回到首頁"><strong>MyMatch</strong>
     </a>
-  </div>
+    <a class="" [routerLink]="['/userCondition']" routerLinkActive="router-link-active" title="我要配對,尋找朋友">
+      <span class="fa fa-user-plus fa-2x"></span>
+    </a>
+</div>
+
+  <!--
   <div class="brand-menu">
     <ul>
       <li>
@@ -23,11 +25,11 @@
       </li>
     </ul>
   </div>
-
+  -->
 
   <div class="logged-user" *ngIf="authService.isLogin()">
     <!-- <img src="{{authService.currentUser.photoUrl || '../../assets/imgs/user.png'}}" alt=""> -->
-    <img class="img-circle rounded-circle" src="{{photoUrl}}" alt="" id="topbar-photo">
+    <img class="img-circle" src="{{photoUrl}}" alt="" id="topbar-photo">
     <div class="user-name"><span>{{authService.decodedToken?.unique_name}}</span></div>
     <app-my-messages-alert></app-my-messages-alert>
     <!--
@@ -38,7 +40,7 @@
   </div>
   <div class="login" *ngIf="!authService.isLogin()">
     <a class="login-icon" [routerLink]="['auth','login']" routerLinkActive="router-link-active" title="登入(Login) ">
-      <span class="fa fa-sign-in fa-2x"></span>
+      <span class="fa fa-sign-in">登入</span>
     </a>
   </div>
 

@@ -85,6 +85,7 @@ export class UserMatchConditionComponent implements OnInit {
       this.myFormGroup = this.fb.group({
         userId: [this.userCondition.userId],
         sex: [this.userCondition.sex],
+        matchSex: [this.userCondition.matchSex],
         marryMin: [this.userCondition.marryMin, Validators.required],
         marryMax: [this.userCondition.marryMax, Validators.required],
         yearMin: [this.userCondition.yearMin, Validators.required],

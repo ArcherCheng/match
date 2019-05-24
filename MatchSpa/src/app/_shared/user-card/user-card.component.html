@@ -1,43 +1,11 @@
-<div class="card">
-  <div class="card-img-wrapper">
-    <img class="card-img-top" src="{{user.mainPhotoUrl || '../../assets/imgs/user.png'}}" alt="{{user.nickName}}">
-    <!-- <img class="card-img-top" src="{{photoUrl}}" alt="{{member.lastName}}"> -->
-  </div>
-  <div class="card-body p-1">
-    <div class="card-text text-muted text-center"><strong>暱稱: {{user.nickName}}</strong></div>
-    <div class="card-text text-muted text-center"><strong>出生年: {{user.birthYear}} &nbsp;&nbsp; 血型: {{user.blood}}</strong></div>
-    <div class="card-text text-muted text-center"><strong>身高: {{user.heights}} CM &nbsp;&nbsp; 體重: {{user.weights}} KG</strong></div>
-    <div class="card-text text-muted text-center"><strong>星座: {{user.star}}</strong></div>
-    <div class="card-text text-muted text-center"><strong>學歷: {{user.education | education}}</strong></div>
-    <div class="card-text text-muted text-center"><strong>職業: {{user.jobType}}</strong></div>
-    <div class="card-text text-muted text-center"><strong>居住城市: {{user.city}}</strong></div>
-    <div class="card-text text-muted text-center"><strong>更新時間: {{user.activeDate | date: 'M/d hh:mm'}}</strong></div>
-  </div>
-  <div class="card-footer">
-    <ul class="list-inline member-icons animate text-center">
-      <li class="list-inline-item">
-        <a class="btn btn-danger" [routerLink]="['/userDetail',user.userId]" title="查詢會員個人資料">
-          <!-- [queryParams]="{partyId: currentPartyId}" -->
-          &nbsp;<i class="fa fa-user fa-2x"></i>&nbsp;
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <button class="btn btn-danger"  [routerLink]="['/myData/myThread',user.userId]" title="互動會員訊息留言"
-        [queryParams]="{tab: 3}">
-          &nbsp;<i class="fa fa-envelope fa-2x"></i>&nbsp;
-        </button>
-      </li>
-      <li class="list-inline-item">
-        <button class="btn btn-danger" (click)="addMyLiker(user.userId)" title="加入我的最愛名單">
-          &nbsp;<i class="fa fa-heart fa-2x"></i>
-        </button>
-      </li>
-      <li class="list-inline-item">
-        <button class="btn btn-danger" (click)="deleteMyLiker(user.userId)" title="移出我的最愛名單">
-          &nbsp;<i class="fa fa-heartbeat fa-2x"></i>
-        </button> 
-      </li>
-
-    </ul>
-  </div>
+<div class="card-body p-1">
+  <div class="card-text text-muted text-center"><strong>性別: {{user.sex | sex}}</strong> </div>
+  <div class="card-text text-muted text-center"><strong>暱稱: {{user.nickName}}</strong> </div>
+  <div class="card-text text-muted text-center"><strong>出生年: {{user.birthYear}} &nbsp;&nbsp; 血型: {{user.blood}}</strong></div>
+  <div class="card-text text-muted text-center"><strong>身高: {{user.heights}} CM &nbsp;&nbsp; 體重: {{user.weights}} KG</strong></div>
+  <div class="card-text text-muted text-center"><strong>學歷: {{user.education | education}}</strong></div>
+  <div class="card-text text-muted text-center"><strong>星座: {{user.star}}</strong></div>
+  <div class="card-text text-muted text-center"><strong>職業: {{user.jobType}}</strong></div>
+  <div class="card-text text-muted text-center"><strong>居住城市: {{user.city}}</strong></div>
+  <div class="card-text text-muted text-center"><strong>更新時間: {{user.activeDate | date: 'M/d hh:mm'}}</strong></div>
 </div>

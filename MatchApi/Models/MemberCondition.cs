@@ -7,6 +7,7 @@ namespace MatchApi.Models
     {
         public int UserId { get; set; }
         public int Sex { get; set; }
+        public int MatchSex { get; set; }
         public int MarryMin { get; set; }
         public int MarryMax { get; set; }
         public int YearMin { get; set; }

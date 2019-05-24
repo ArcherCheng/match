@@ -243,7 +243,7 @@ namespace MatchApi.Controllers
             if (member2 == null)
                 return Unauthorized();
 
-            var success = await _repoMember.DeleteMyLiker(userId, likeId);
+            var success = await _repoMember.DeleteMyLiker(userId, likeId); 
 
             if (!success)
                 return BadRequest("取消好友失敗");

@@ -1,0 +1,6 @@
+.photo-center:first-child {
+  float: left;
+}
+.photo-center:last-child {
+  float: right;
+}

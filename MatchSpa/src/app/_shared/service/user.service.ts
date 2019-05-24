@@ -109,7 +109,7 @@ export class UserService {
   }
 
   deletePhoto(userId: number, id: number) {
-    return this.http.delete(this.baseUrl + 'member/' + userId + '/delPhoto/' + id );
+    return this.http.delete(this.baseUrl + 'member/' + userId + '/deletePhoto/' + id );
   }
 
   addMyLiker(userId: number, likeId: number) {

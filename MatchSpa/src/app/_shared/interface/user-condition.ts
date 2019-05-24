@@ -1,6 +1,7 @@
 export interface UserCondition {
   userId: number;
   sex: number;
+  matchSex: number;
 
   marryMin: number;
   marryMax: number;
