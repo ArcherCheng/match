@@ -107,9 +107,9 @@ namespace MatchApi.Controllers
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
-            var repoMember = await _repoHome.GetUserDetail(userId);
-            repoMember.ActiveDate = System.DateTime.Now;
-            _repoHome.Update(repoMember);
+            // var repoMember = await _repoHome.GetUserDetail(userId);
+            // repoMember.ActiveDate = System.DateTime.Now;
+            // _repoHome.Update(repoMember);
 
             var repoMemberCondition = await _repoHome.GetUserCondition(userId);
             if (repoMemberCondition == null)
@@ -117,7 +117,7 @@ namespace MatchApi.Controllers
                 repoMemberCondition = new MemberCondition();
                 _mapper.Map(model, repoMemberCondition);
                 repoMemberCondition.UserId= userId;
-                repoMemberCondition.Sex = repoMember.Sex;
+                // repoMemberCondition.Sex = repoMember.Sex;
                 _repoHome.Add(repoMemberCondition);
             }
             else

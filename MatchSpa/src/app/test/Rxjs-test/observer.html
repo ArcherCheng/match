@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Producer() {
+      if(!(this instanceof Producer)) {
+        throw new Error("please use new Producer()");
+      }
+      this.listeners = [];
+    }
+
+    Producer.prototype.addListener = function(listener) {
+      if(typeof listener === "function") {
+        this.listeners.push(listener);
+      } else {
+        throw new Error("listener must is function");
+      }
+    }
+
+    Producer.prototype.removeListener = function(listener) {
+      this.listeners.splice(this.listeners.indexOf(listener),1);
+    }
+
+    Producer.prototype.nodify = function(message) {
+      this.listeners.forEach( listener => {
+        listener(message);
+      });
+    }
+
+    function listener1(message) {
+      console.log(message + 'from listener1');
+    }
+    function listener2(message) {
+      console.log(message + 'from listener2');
+    }
+
+    var eggHead = new Producer();
+    eggHead.addListener(listener1);
+    eggHead.addListener(listener2);
+    eggHead.nodify("herro a new course!! ");
+
+
+  </script>
+
+</body>
+</html>

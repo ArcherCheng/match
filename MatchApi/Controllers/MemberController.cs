@@ -109,7 +109,11 @@ namespace MatchApi.Controllers
             photo.UserId = userId;
             photo.AddedDate = System.DateTime.Now;
             if (!_repoMember.HasMainPhoto(userId)) 
+            {
                 photo.IsMain = true;
+                member.ActiveDate = System.DateTime.Now;
+                member.MainPhotoUrl = photo.PhotoUrl;
+            }
 
             _repoMember.Add<MemberPhoto>(photo);
             if (await _repoMember.SaveAllAsync()>0)

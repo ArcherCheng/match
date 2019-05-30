@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/rxjs@5.4.2/bundles/Rx.min.js"></script>
+  <style>
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 3000px;
+      background-color: tomato;
+    }
+
+    #anchor {
+      height: 360px;
+      width: 100%;
+      background-color: #f0f0f0;
+    }
+
+    .video {
+      width: 640px;
+      height: 360px;
+      margin: 0 auto;
+      background-color: black;
+    }
+
+    .video.video-fixed {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 320px;
+      height: 150px;
+      cursor: all-scroll;
+    }
+
+    .video.video-fixed .masker {
+      display: none;
+    }
+
+    .video.video-fixed:hover .masker{
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 180px;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 2;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="anchor">
+    <div class="video" id="video">
+      <div class="masker"></div>
+      <video width="100%" controls>
+        <source src="http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_480p_stereo.ogg" type="video/ogg">
+        your browser doen'nt support html5 video
+      </video>
+    </div>
+  </div>
+  <script>
+    const anchor = document.getElementById('anchor');
+    const video = document.getElementById('video');
+
+    const scroll = Rx.Observable.fromEvent(document, 'scroll');
+    const mouseDown = Rx.Observable.fromEvent(video,'mousedown');
+    const mouseMove = Rx.Observable.fromEvent(document, 'mousemove');
+    const mouseUp = Rx.Observable.fromEvent(document, 'mouseup');
+
+    // console.log(anchor.getBoundingClientRect());
+    scroll.map(e => anchor.getBoundingClientRect().bottom<0)
+    .subscribe(bool => {
+      if(bool) {
+        video.classList.add('video-fixed');
+      } else {
+        video.classList.remove('video-fixed');
+      }
+    });
+
+    mouseDown
+      .map(e => mouseMove.takeUntil(mouseUp))
+      .concatAll()
+      .map(m => {
+        //console.log(m);
+        return {
+          x: m.clientX,
+          y: m.clientY
+        }
+      })
+      .subscribe(pos => {
+        video.style.left = pos.x + 'px';
+        video.style.top = pos.y + 'px;'
+      });
+
+
+  </script>
+
+
+</body>
+
+</html>
