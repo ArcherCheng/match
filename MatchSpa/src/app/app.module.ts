@@ -15,6 +15,8 @@ import { UserMatchConditionComponent } from './user-match-condition/user-match-c
 import { MainMenuComponent } from './_shared/main-menu/main-menu.component';
 import { QuestionsComponent } from './_shared/questions/questions.component';
 import { Page404Component } from './_shared/page404/page404.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 // import { CheckboxReactiveComponent } from './_shared/checkbox-reactive/checkbox-reactive.component';
 
 export function tokenGetter() {
@@ -45,7 +47,8 @@ export function tokenGetter() {
         whitelistedDomains: ['localhost:5000'],
         blacklistedRoutes: ['localhost:5000/api/auth']
       }
-    })
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
