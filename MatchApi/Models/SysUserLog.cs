@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MatchApi.Models
 {
-    public partial class Aa9log20
+    public partial class SysUserLog
     {
         public long Id { get; set; }
         public string UserId { get; set; }

@@ -1,18 +1,22 @@
 ﻿/*
-drop table activity
-go
 drop table Liker
 go
 drop table message
 go
 drop table MemberPhoto
 go
+drop table MemberCondition
+go
+drop table MemberDetail
+go
 drop table member
 go
-drop table partyPhoto
+drop table SysTransLog
 go
-drop table party
+drop table SysUserLog
 go
+
+
 */
 --------------------------------------------------------------------------------------------
 --會員資料檔
@@ -24,9 +28,9 @@ create table Member
 	UserId      int identity(1,1)   not null,
 	--FirstName   nvarchar(16)   not null, --姓氐  
 	--LastName    nvarchar(16)   not null, --名字
-	NickName    nvarchar(32)   not null, --我的暱稱
-	Phone       nvarchar(16)   not null, --行動電話
-	Email       nvarchar(32)   not null, --電子郵件
+	NickName    nvarchar(30)   not null, --我的暱稱
+	Phone       nvarchar(15)   not null, --行動電話
+	Email       nvarchar(30)   not null, --電子郵件
 
 	--以下為個人基本條件
 	Sex           int          not null,--性別(1=男,2=女)
@@ -39,31 +43,31 @@ create table Member
 	Weights       int      not null,--體重
 	Salary        int      not null,--年薪
 	Blood         nvarchar(2)    null,--血型(a,b,o,ab)
-	Star          nvarchar(32)   null,--星座
-	City          nvarchar(32)   null,--居住城市
-	School        nvarchar(32)   null,--畢業學校
-	Subjects      nvarchar(32)   null,--畢業科系
-	JobType       nvarchar(32)   null,--職業類別
-	Religion      nvarchar(32)   null,--宗教信仰
+	Star          nvarchar(30)   null,--星座
+	City          nvarchar(30)   null,--居住城市
+	School        nvarchar(30)   null,--畢業學校
+	Subjects      nvarchar(30)   null,--畢業科系
+	JobType       nvarchar(30)   null,--職業類別
+	Religion      nvarchar(30)   null,--宗教信仰
 
 	--以下這些資料個人特資料,可在網路查詢
 	--Introduction  nvarchar(max) null,--自我介紹
 	--LikeCondition nvarchar(max) null,--希望對象
 
 	--找回密碼用
-	--PdQuestion   nvarchar(32)   null, --找回密碼問題,由註冊時系統先給 我註冊時設定的密碼
-	--PdAnswer     nvarchar(32)   null, --找回密碼答案,由註冊時系統先給 model.通行密碼
+	--PdQuestion   nvarchar(30)   null, --找回密碼問題,由註冊時系統先給 我註冊時設定的密碼
+	--PdAnswer     nvarchar(30)   null, --找回密碼答案,由註冊時系統先給 model.通行密碼
 	
 	--關檔及轉帳查核用
 	IsCloseData  bit        not null,--是否關閉檔案,即不做網路配對
 	IsClosePhoto bit        not null,--是否關閉相簿
-	--BankName     nvarchar(32)   null, --轉帳銀行
-	--BankNumber6  nvarchar(32)   null, --帳號後6碼
+	--BankName     nvarchar(30)   null, --轉帳銀行
+	--BankNumber6  nvarchar(30)   null, --帳號後6碼
 
 	--這部份內容由系統自動產生
-	MainPhotoUrl  nvarchar(256)   null,--封面相片網址
-	PasswordHash  varbinary(2048)   null,
-	PasswordSalt  varbinary(2048)   null,
+	MainPhotoUrl  nvarchar(250)   null,--封面相片網址
+	PasswordHash  varbinary(2000)   null,
+	PasswordSalt  varbinary(2000)   null,
 	LoginDate     datetime       null,--上次登入日期
 	ActiveDate    datetime       null,--最後活動日期
 
@@ -76,7 +80,7 @@ create table Member
 	--SchoolUrl     nvarchar(256)   null,--學歷證明
 
 	--以下由系統人員輸入
-	UserRole      nvarchar(16)   null,--角色歸屬
+	UserRole      nvarchar(15)   null,--角色歸屬
 	--IsBlackUser   int        not null,--是否列為黑名單
 	--UnPayTimes    int        not null,--報名未繳款次數
 	--ResetPassword int        not null,--必須重設密碼
@@ -86,7 +90,7 @@ create table Member
 
 	CreateTime    Datetime       Null,
 	UpdateTime    Datetime       Null,
-	WriteUser     int            Null,
+	WriteId       int            Null,
 	WriteIp       Nvarchar(30)   Null, 
 	constraint pk_Member primary key (UserId) 
 );
@@ -132,7 +136,7 @@ create table MemberDetail
 
 	CreateTime    Datetime       Null,
 	UpdateTime    Datetime       Null,
-	WriteUser     int            Null,
+	WriteId       int            Null,
 	WriteIp       Nvarchar(30)   Null, 
 	constraint pk_MemberDetail primary key (UserId) 
 );
@@ -181,15 +185,15 @@ create table MemberPhoto
 	Id             int identity(1,1) not null ,
 	UserId         int not null ,
 	IsMain         bit not null  ,
-	Descriptions   nvarchar(256) ,
-	PhotoUrl       nvarchar(256) ,
-	PublicId       nvarchar(256) ,
+	Descriptions   nvarchar(250) ,
+	PhotoUrl       nvarchar(250) ,
+	PublicId       nvarchar(250) ,
 	AddedDate      datetime,
 
 	--以下每檔資料表都會有這些欄位
 	CreateTime    Datetime       Null,
 	UpdateTime    Datetime       Null,
-	WriteUser     int            Null,
+	WriteId       int            Null,
 	WriteIp       Nvarchar(30)   Null, 
 	constraint pk_MemberPhoto primary key (id)
 );
@@ -258,17 +262,17 @@ create table MemberCondition
 	SalaryMin        int      not null,--年薪
 	
 	--以下這些資料會印在聯誼名單的個人資料上
-	BloodInclude     nvarchar(16)   null,--血型(a,b,o,ab)
-	StarInclude      nvarchar(128)  null,--星座
-	CityInclude      nvarchar(128)  null,--居住城市
-	JobTypeInclude   nvarchar(128)  null,--職業類別
-	ReligionInclude  nvarchar(128)  null,--宗教信仰
+	BloodInclude     nvarchar(15)   null,--血型(a,b,o,ab)
+	StarInclude      nvarchar(120)  null,--星座
+	CityInclude      nvarchar(120)  null,--居住城市
+	JobTypeInclude   nvarchar(120)  null,--職業類別
+	ReligionInclude  nvarchar(120)  null,--宗教信仰
 
 	--以下每檔資料表都會有這些欄位
-	WriteType     integer        null,
-	WriteTime     datetime       null,
-	WriteUser     nvarchar(32)   null,
-	WriteIp       nvarchar(32)   null,
+	CreateTime    Datetime       Null,
+	UpdateTime    Datetime       Null,
+	WriteId       int            Null,
+	WriteIp       Nvarchar(30)   Null, 
 	constraint pk_MemberCondition primary key (UserId) 
 );
 Go

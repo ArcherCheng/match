@@ -15,7 +15,7 @@ namespace MatchApi.Data
 
         public void SeedMembers()
         {
-            var memberJson=System.IO.File.ReadAllText("Data/member1.json");
+            var memberJson=System.IO.File.ReadAllText("SeedData/member1.json");
             var members= JsonConvert.DeserializeObject<List<Member>>(memberJson);
             foreach (var member in members) 
             {

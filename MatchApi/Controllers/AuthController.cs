@@ -144,16 +144,16 @@ namespace MatchApi.Controllers
         }
 
 
-        [HttpGet("GetCheckboxItemList/{keyGroup}")]
+        [HttpGet("GetGroupKeyValueList/{keyGroup}")]
         public async Task<IActionResult> GetCheckboxItemList(string keyGroup)
         {
-            var checkboxdItemList = await _repoAuth.GetCheckBoxItemList(keyGroup);
+            var checkboxdItemList = await _repoAuth.GetGroupKeyValueList(keyGroup);
             if (checkboxdItemList == null)
             {
                 return NotFound();
             }
 
-            var dtoCheckboxItemList = _mapper.Map<IEnumerable<DtoCheckboxItem>>(checkboxdItemList);
+            var dtoCheckboxItemList = _mapper.Map<IEnumerable<DtoGroupKeyValue>>(checkboxdItemList);
 
             return Ok(dtoCheckboxItemList);
         }

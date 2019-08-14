@@ -1,0 +1,125 @@
+https://www.json-generator.com/#
+
+[
+  '{{repeat(50)}}',
+  {
+    NickName: '{{firstName("male")}}',
+    Phone: '{{index(9987654100)}}',
+    Email: '{{email([random])}}',
+    Sex: '1',
+    Birthday: '{{date(new Date(1970,0,1), new Date(1992, 11, 31), "YYYY-MM-dd")}}',
+    Marry: '{{random(1,2,3)}}',
+    Education: '{{random(3,4,5,6)}}',
+    Heights: '{{integer(160,185)}}',
+    Weights: '{{integer(50,85)}}',
+    Salary: '{{integer(50,300)}}',
+    Blood: '{{random("A","B","O","AB")}}',
+    City: '{{random("台北市","新北市","桃園市","新竹縣市","基隆市","其他")}}',
+    Star: '{{random("水瓶座","雙魚座","牡羊座","金牛座","雙子座","巨蟹座","獅子座","處女座","天秤座","天蠍座","射手座","魔羯座")}}',
+    JobType: '{{random("公務機關","學校機關","軍警消機關","國營事業機關","上市櫃公司","外商公司","一般中小企業","財團或社團法人機關","其他")}}',
+    Religion: '{{random("佛教","道教","基督教","天主教","其他")}}',
+    LastDate: '{{date(new Date(2019,3,1), new Date(2019, 6, 30), "YYYY-MM-dd")}}',
+    LastActive: function(){return this.LastDate; },
+    MemberDetail: [
+      {
+        Introduction: '{{lorem(1, "paragraphs")}}',
+        LikeCondition: '{{lorem(1, "paragraphs")}}',
+      }
+    ],
+    MemberCondition: [
+      {
+        sex: '1',
+        matchSex: '2',
+        marryMin: '1',
+        marryMax: '{{integer(1,3)}}',
+        educationMin: '3',
+        educationMax: '{{random(3,4,5,6)}}',
+        HeightsMin: '{{random(152,155,158)}}',
+        HeightsMax: '{{random(160,162,165,168,170)}}',
+        WeightsMin: '40',
+        WeightsMax: '{{integer(45,70)}}',
+        SalaryMin: '{{random(50,60,70,80,90,100)}}',
+        bloodInclude:'{{random("A","B")}},{{random("O","AB")}}',
+        CityInclude: '{{random("台北市,新北市","台北市,新北市,基隆市","新北市,桃園市,新竹縣市","台北市,新北市,桃園市,新竹縣市,基隆市")}}'
+      }
+    ],
+    MemberPhoto: [
+        {
+          PhotoUrl: function(num) {
+          return 'https://randomuser.me/api/portraits/men/' + num.index(1) + '.jpg';
+        },
+        IsMain: true,
+        Descriptions: '測試用'
+      }
+    ] 
+  }
+]
+
+
+
+
+
+[
+  '{{repeat(50)}}',
+  {
+    NickName: '{{firstName("female")}}',
+    Phone: '{{index(9987654200)}}',
+    Email: '{{email([random])}}',
+    Sex: '2',
+    Birthday: '{{date(new Date(1975,0,1), new Date(1996, 12, 31), "YYYY-MM-dd")}}',
+    Marry: '{{random(1,2,3)}}',
+    Education: '{{random(3,4,5,6)}}',
+    Heights: '{{integer(150,172)}}',
+    Weights: '{{integer(40,70)}}',
+    Salary: '{{integer(50,300)}}',
+    Blood: '{{random("A","B","O","AB")}}',
+    City: '{{random("台北市","新北市","桃園市","新竹縣市","基隆市","其他")}}',
+    Star: '{{random("水瓶座","雙魚座","牡羊座","金牛座","雙子座","巨蟹座","獅子座","處女座","天秤座","天蠍座","射手座","魔羯座")}}',
+    JobType: '{{random("公務機關","學校機關","軍警消機關","國營事業機關","上市櫃公司","外商公司","一般中小企業","財團或社團法人機關","其他")}}',
+    Religion: '{{random("佛教","道教","基督教","天主教","其他")}}',
+    LastDate: '{{date(new Date(2019,3,1), new Date(2019, 6, 30), "YYYY-MM-dd")}}',
+    LastActive: function(){return this.LastDate; },
+    MemberDetail: [
+      {
+        Introduction: '{{lorem(1, "paragraphs")}}',
+        LikeCondition: '{{lorem(1, "paragraphs")}}',
+      }
+    ],
+    MemberCondition: [
+      {
+        sex: '2',
+        matchSex: '1',
+        marryMin: '1',
+        marryMax: '{{integer(1,3)}}',
+        educationMin: '3',
+        educationMax: '{{random(3,4,5,6)}}',
+        HeightsMin: '{{random(160,165,170)}}',
+        HeightsMax: '{{random(165,168,170,175,180)}}',
+        WeightsMin: '60',
+        WeightsMax: '{{integer(65,80)}}',
+        SalaryMin: '{{random(50,60,70,80,90,100)}}',
+        bloodInclude:'{{random("A","B")}},{{random("O","AB")}}',
+        CityInclude: '{{random("台北市,新北市","台北市,新北市,基隆市","新北市,桃園市,新竹縣市","台北市,新北市,桃園市,新竹縣市,基隆市")}}'
+      }
+    ],
+    MemberPhoto: [
+        {
+          PhotoUrl: function(num) {
+          return 'https://randomuser.me/api/portraits/women/' + num.index(1) + '.jpg';
+        },
+        IsMain: true,
+        Descriptions: '測試用'
+      }
+    ] 
+  }
+]
+
+
+
+
+
+
+
+
+
+

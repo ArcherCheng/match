@@ -13,8 +13,8 @@ create table Liker
 
 	CreateTime    Datetime       Null,
 	UpdateTime    Datetime       Null,
-	WriteUser     int            Null,
-	WriteIp       Nvarchar(30)   Null,
+	WriteId       int            Null,
+	WriteIp       Nvarchar(30)   Null, 
 	constraint Pk_liker primary key (UserId,LikerId) 
 );
 go

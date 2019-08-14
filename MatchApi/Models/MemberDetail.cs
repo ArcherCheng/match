@@ -3,19 +3,16 @@ using System.Collections.Generic;
 
 namespace MatchApi.Models
 {
-    public partial class Liker
+    public partial class MemberDetail
     {
         public int UserId { get; set; }
-        public int LikerId { get; set; }
-        public DateTime AddedDate { get; set; }
-        public bool IsDelete { get; set; }
-        public DateTime? DeleteDate { get; set; }
+        public string Introduction { get; set; }
+        public string LikeCondition { get; set; }
         public DateTime? CreateTime { get; set; }
         public DateTime? UpdateTime { get; set; }
         public int? WriteId { get; set; }
         public string WriteIp { get; set; }
 
-        public virtual Member LikerNavigation { get; set; }
         public virtual Member User { get; set; }
     }
 }

@@ -11,7 +11,7 @@ create table GroupKeyValue
 
 	--CreateTime    Datetime       Null,
 	--UpdateTime    Datetime       Null,
-	--WriteUser     int            Null,
+	--WriteId       int            Null,
 	--WriteIp       Nvarchar(30)   Null,
 	constraint pk_GroupKeyValue primary key (Id) 
 );

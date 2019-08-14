@@ -20,8 +20,8 @@ create table Message
 
 	CreateTime    Datetime       Null,
 	UpdateTime    Datetime       Null,
-	WriteUser     int            Null,
-	WriteIp       Nvarchar(30)   Null,
+	WriteId       int            Null,
+	WriteIp       Nvarchar(30)   Null, 
 	constraint pk_Message primary key (Id)
 );
 go

@@ -32,21 +32,21 @@ namespace MatchApi.Models
         public string Subjects { get; set; }
         public string JobType { get; set; }
         public string Religion { get; set; }
-        public string Introduction { get; set; }
-        public string LikeCondition { get; set; }
         public bool IsCloseData { get; set; }
+        public bool IsClosePhoto { get; set; }
         public string MainPhotoUrl { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public DateTime? LoginDate { get; set; }
         public DateTime? ActiveDate { get; set; }
         public string UserRole { get; set; }
-        public int? WriteType { get; set; }
-        public DateTime? WriteTime { get; set; }
-        public string WriteUser { get; set; }
+        public DateTime? CreateTime { get; set; }
+        public DateTime? UpdateTime { get; set; }
+        public int? WriteId { get; set; }
         public string WriteIp { get; set; }
 
         public virtual MemberCondition MemberCondition { get; set; }
+        public virtual MemberDetail MemberDetail { get; set; }
         public virtual ICollection<Liker> LikerLikerNavigation { get; set; }
         public virtual ICollection<Liker> LikerUser { get; set; }
         public virtual ICollection<MemberPhoto> MemberPhoto { get; set; }

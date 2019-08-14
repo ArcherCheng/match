@@ -10,6 +10,6 @@ namespace MatchApi.Repository
          Task<Member> GetMember(string email, string phone);
          Task<Member> Login(string userEmail, string password);
          Task<bool> UserIsExists(string userEmail, string userPhone);
-         Task<IEnumerable<CheckboxItem>> GetCheckBoxItemList(string keyGroup);
+         Task<IEnumerable<GroupKeyValue>> GetGroupKeyValueList(string keyGroup);
     }
 }

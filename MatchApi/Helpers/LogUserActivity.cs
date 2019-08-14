@@ -23,7 +23,7 @@ namespace MatchApi.Helpers
 
             }
 
-            Aa9log20 log = new Aa9log20()
+            SysUserLog log = new SysUserLog()
             {
                 UserId = currentUserId,
                 Refer = resultContext.ActionDescriptor.AttributeRouteInfo.ToString(),
@@ -35,7 +35,7 @@ namespace MatchApi.Helpers
             };
 
             var repo = resultContext.HttpContext.RequestServices.GetService<IRepoUserLog>();
-            await repo.AddLogAsync(log, currentUserId);
+            await repo.AddUserLogAsync(log, currentUserId);
         }
     }
 

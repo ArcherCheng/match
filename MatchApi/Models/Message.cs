@@ -14,9 +14,9 @@ namespace MatchApi.Models
         public DateTime? ReadDate { get; set; }
         public bool SenderDeleted { get; set; }
         public bool RecipientDeleted { get; set; }
-        public int? WriteType { get; set; }
-        public DateTime? WriteTime { get; set; }
-        public string WriteUser { get; set; }
+        public DateTime? CreateTime { get; set; }
+        public DateTime? UpdateTime { get; set; }
+        public int? WriteId { get; set; }
         public string WriteIp { get; set; }
 
         public virtual Member Recipient { get; set; }

@@ -24,9 +24,9 @@ namespace MatchApi.Models
         public string CityInclude { get; set; }
         public string JobTypeInclude { get; set; }
         public string ReligionInclude { get; set; }
-        public int? WriteType { get; set; }
-        public DateTime? WriteTime { get; set; }
-        public string WriteUser { get; set; }
+        public DateTime? CreateTime { get; set; }
+        public DateTime? UpdateTime { get; set; }
+        public int? WriteId { get; set; }
         public string WriteIp { get; set; }
 
         public virtual Member User { get; set; }

@@ -6,7 +6,7 @@ namespace MatchApi.Repository
 {
     public interface IRepoUserLog
     {
-        Task<int> AddLogAsync(Aa9log20 entity, string userId);
+        Task<int> AddUserLogAsync(SysUserLog entity, string userId);
         // Task<int> UpdateUserActivateDateAsync(int userId);
     }
 }

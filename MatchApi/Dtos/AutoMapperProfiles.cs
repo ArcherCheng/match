@@ -7,7 +7,7 @@ namespace MatchApi.Dtos
         public AutoMapperProfiles()
         {
             CreateMap<Member, DtoRegister>().ReverseMap();
-            CreateMap<CheckboxItem, DtoCheckboxItem>();
+            CreateMap<GroupKeyValue, DtoGroupKeyValue>();
             CreateMap<MemberCondition, DtoMemberCondition>().ReverseMap();
             
             CreateMap<Member,DtoMemberList>();

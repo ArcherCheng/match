@@ -8,7 +8,7 @@ namespace MatchApi.Dtos
         public string KeyLabel { get; set; }        
     }
 
-    public class DtoCheckboxItem
+    public class DtoGroupKeyValue
     {
         public int KeySeq { get; set; }
         public string KeyValue { get; set; }        

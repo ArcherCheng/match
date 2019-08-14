@@ -13,9 +13,9 @@ namespace MatchApi.Repository
         {
         }
 
-        public async Task<IEnumerable<CheckboxItem>> GetCheckBoxItemList(string keyGroup)
+        public async Task<IEnumerable<GroupKeyValue>> GetGroupKeyValueList(string keyGroup)
         {
-            var result = await _db.CheckboxItem
+            var result = await _db.GroupKeyValue
                 .Where(x => x.KeyGroup == keyGroup)
                 .OrderBy(x =>x.KeySeq)
                 // .Select(x => new {
