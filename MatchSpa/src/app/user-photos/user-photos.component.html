@@ -2,5 +2,14 @@
     <p *ngFor="let item of userPhotos" class="text-center">
         <img src="{{item.photoUrl}}" alt="{{item.descriptions}}" class="img-fluid">
     </p>
+    <div>
+      <a class="btn btn-primary btn-block" [routerLink]="['/userDetail',user.userId]" routerLinkActive="router-link-active">個人資料</a>
+    </div>
+    <div>
+      <a class="btn btn-success btn-block" [routerLink]="['/myData/myThread',user.userId]" routerLinkActive="router-link-active">留言訊息</a>
+    </div>
+    <div>
+        <!-- <a class="btn btn-warning btn-block" (click)="addMyLiker(user.userId)">加入好友</a> -->
+    </div>
 </div>
 

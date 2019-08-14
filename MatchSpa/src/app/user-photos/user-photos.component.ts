@@ -3,6 +3,7 @@ import { UserPhoto } from '../_shared/interface/user-photo';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../_shared/service/user.service';
 import { AlertifyService } from '../_shared/service/alertify.service';
+import { User } from '../_shared/interface/user';
 
 @Component({
   selector: 'app-user-photos',
@@ -11,6 +12,7 @@ import { AlertifyService } from '../_shared/service/alertify.service';
 })
 export class UserPhotosComponent implements OnInit {
   userPhotos: UserPhoto[];
+  user: User;
 
   constructor(
     private route: ActivatedRoute,

@@ -47,8 +47,8 @@ create table Member
 	Religion      nvarchar(32)   null,--宗教信仰
 
 	--以下這些資料個人特資料,可在網路查詢
-	Introduction  nvarchar(4096) null,--自我介紹
-	LikeCondition nvarchar(4096) null,--希望對象
+	--Introduction  nvarchar(max) null,--自我介紹
+	--LikeCondition nvarchar(max) null,--希望對象
 
 	--找回密碼用
 	--PdQuestion   nvarchar(32)   null, --找回密碼問題,由註冊時系統先給 我註冊時設定的密碼
@@ -56,7 +56,7 @@ create table Member
 	
 	--關檔及轉帳查核用
 	IsCloseData  bit        not null,--是否關閉檔案,即不做網路配對
-	--IsClosePhoto bit        not null,--是否關閉相簿
+	IsClosePhoto bit        not null,--是否關閉相簿
 	--BankName     nvarchar(32)   null, --轉帳銀行
 	--BankNumber6  nvarchar(32)   null, --帳號後6碼
 
@@ -84,11 +84,10 @@ create table Member
 	--IdCheck       int        not null,--身份證查驗
 	--SchoolCheck   int        not null,--學歷查驗
 
-	--以下每檔資料表都會有這些欄位
-	WriteType     integer        null,
-	WriteTime     datetime       null,
-	WriteUser     nvarchar(32)   null,
-	WriteIp       nvarchar(32)   null,
+	CreateTime    Datetime       Null,
+	UpdateTime    Datetime       Null,
+	WriteUser     int            Null,
+	WriteIp       Nvarchar(30)   Null, 
 	constraint pk_Member primary key (UserId) 
 );
 Go
@@ -97,38 +96,80 @@ Create unique index Member_in1 on Member (Email asc);
 create unique index Member_in2 on Member (Phone asc);
 go
 
-create trigger tr_Member_iud on Member after insert,update,delete not for replication as
+create trigger Member_Tr1 on Member after insert,update,delete not for replication as
 begin
-	declare @tablename nvarchar(32);
-	set @tablename='Member';
+	Declare @TableName Nvarchar(30);
+	Set @TableName='Member';
 
-	declare @istype tinyint;
-	set @istype=0;
+	Declare @IudType Tinyint;
+	Set @IudType=0;
  
-	if exists(select 1 from inserted) and not exists(select 1 from deleted)
-		set @istype = 1;    --insert
-	else if not exists(select 1 from inserted) and exists(select 1 from deleted)
-		set @istype = 3;    --delete
-	else if exists(select 1 from inserted) and exists(select 1 from deleted)
-		begin
-			set @istype = 2;    --update
-			--以下情況不做log
-			--使用者欲刪除資料時,程式會先更新刪除者及刪除時間位置(writetype=3)..等,這是屬於刪除的前置作業,不做log,只做刪除這個動作的log
-			--月結過帳時須資料會整批先清為零(writetype=4),就不做log,逐筆計算時,再做寫入log
-			declare @wrtype int;
-			select @wrtype=writetype from inserted;
-			if @wrtype > 2 return; 
-		end
+	If Exists(Select 1 From Inserted) And Not Exists(Select 1 From Deleted)
+		Set @IudType = 1;    --Insert
+	Else If Exists(Select 1 From Inserted) And Exists(Select 1 From Deleted)
+		Set @IudType = 2;    --Update
+	Else If Not Exists(Select 1 From Inserted) And Exists(Select 1 From Deleted)
+		Set @IudType = 3;    --Delete
 	
-	declare @insertdata nvarchar(max);
-	declare @deletedata nvarchar(max);
+	Declare @InsertData Nvarchar(max);
+	Declare @DeleteData Nvarchar(max);
 
-	set @insertdata=(select * from inserted for JSON auto);
-	set @deletedata=(select * from deleted for JSON auto);
+	Set @InsertData=(Select * From Inserted For Json Auto);
+	Set @DeleteData=(Select * From Deleted For Json Auto);
 
-	insert into aa9log10(tablename,insertdata,deletedata,istype)values(@tablename,@insertdata,@deletedata,@istype);
+	Insert Into SysTransLog(TableName,InsertData,DeleteData,IudType) Values(@TableName,@InsertData,@DeleteData,@IudType);
 end
 go
+
+
+--Drop table MemberDetail
+go
+create table MemberDetail
+(
+	UserId        int   not null,
+	Introduction  nvarchar(max) null,--自我介紹
+	LikeCondition nvarchar(max) null,--希望對象
+
+	CreateTime    Datetime       Null,
+	UpdateTime    Datetime       Null,
+	WriteUser     int            Null,
+	WriteIp       Nvarchar(30)   Null, 
+	constraint pk_MemberDetail primary key (UserId) 
+);
+Go
+
+Alter table MemberDetail add constraint MemberDetail_Member
+      foreign key (UserId)
+      references member(UserId)
+	  ON UPDATE CASCADE
+	  ON DELETE CASCADE
+go
+
+create trigger MemberDetail_Tr1 on MemberDetail after insert,update,delete not for replication as
+begin
+	Declare @TableName Nvarchar(30);
+	Set @TableName='MemberDetail';
+
+	Declare @IudType Tinyint;
+	Set @IudType=0;
+ 
+	If Exists(Select 1 From Inserted) And Not Exists(Select 1 From Deleted)
+		Set @IudType = 1;    --Insert
+	Else If Exists(Select 1 From Inserted) And Exists(Select 1 From Deleted)
+		Set @IudType = 2;    --Update
+	Else If Not Exists(Select 1 From Inserted) And Exists(Select 1 From Deleted)
+		Set @IudType = 3;    --Delete
+	
+	Declare @InsertData Nvarchar(max);
+	Declare @DeleteData Nvarchar(max);
+
+	Set @InsertData=(Select * From Inserted For Json Auto);
+	Set @DeleteData=(Select * From Deleted For Json Auto);
+
+	Insert Into SysTransLog(TableName,InsertData,DeleteData,IudType) Values(@TableName,@InsertData,@DeleteData,@IudType);
+end
+go
+
 
 -------------------------------------------------------------------------------------
 --會員相片檔
@@ -146,10 +187,10 @@ create table MemberPhoto
 	AddedDate      datetime,
 
 	--以下每檔資料表都會有這些欄位
-	WriteType     integer        null,
-	WriteTime     datetime       null,
-	WriteUser     nvarchar(32)   null,
-	WriteIp       nvarchar(32)   null,
+	CreateTime    Datetime       Null,
+	UpdateTime    Datetime       Null,
+	WriteUser     int            Null,
+	WriteIp       Nvarchar(30)   Null, 
 	constraint pk_MemberPhoto primary key (id)
 );
 Go
@@ -161,40 +202,32 @@ Alter table MemberPhoto add constraint Photo_Member
       foreign key (UserId)
       references member(UserId)
 	  ON UPDATE CASCADE
-	  ON DELETE NO ACTION
+	  ON DELETE CASCADE
 go 
 
 
 create trigger tr_MemberPhoto_iud on MemberPhoto after insert,update,delete not for replication as
 begin
-	declare @tablename nvarchar(32);
-	set @tablename='MemberPhoto';
+	Declare @TableName Nvarchar(30);
+	Set @TableName='MemberPhoto';
 
-	declare @istype tinyint;
-	set @istype=0;
+	Declare @IudType Tinyint;
+	Set @IudType=0;
  
-	if exists(select 1 from inserted) and not exists(select 1 from deleted)
-		set @istype = 1;    --insert
-	else if not exists(select 1 from inserted) and exists(select 1 from deleted)
-		set @istype = 3;    --delete
-	else if exists(select 1 from inserted) and exists(select 1 from deleted)
-		begin
-			set @istype = 2;    --update
-			--以下情況不做log
-			--使用者欲刪除資料時,程式會先更新刪除者及刪除時間位置(writetype=3)..等,這是屬於刪除的前置作業,不做log,只做刪除這個動作的log
-			--月結過帳時須資料會整批先清為零(writetype=4),就不做log,逐筆計算時,再做寫入log
-			declare @wrtype int;
-			select @wrtype=writetype from inserted;
-			if @wrtype > 2 return; 
-		end
+	If Exists(Select 1 From Inserted) And Not Exists(Select 1 From Deleted)
+		Set @IudType = 1;    --Insert
+	Else If Exists(Select 1 From Inserted) And Exists(Select 1 From Deleted)
+		Set @IudType = 2;    --Update
+	Else If Not Exists(Select 1 From Inserted) And Exists(Select 1 From Deleted)
+		Set @IudType = 3;    --Delete
 	
-	declare @insertdata nvarchar(max);
-	declare @deletedata nvarchar(max);
+	Declare @InsertData Nvarchar(max);
+	Declare @DeleteData Nvarchar(max);
 
-	set @insertdata=(select * from inserted for json auto);
-	set @deletedata=(select * from deleted for json auto);
+	Set @InsertData=(Select * From Inserted For Json Auto);
+	Set @DeleteData=(Select * From Deleted For Json Auto);
 
-	insert into aa9log10(tablename,insertdata,deletedata,istype)values(@tablename,@insertdata,@deletedata,@istype);
+	Insert Into SysTransLog(TableName,InsertData,DeleteData,IudType) Values(@TableName,@InsertData,@DeleteData,@IudType);
 end
 go
 
@@ -243,7 +276,7 @@ Alter table MemberCondition add constraint Condition_Member
       foreign key (UserId)
       references member(UserId)
 	  ON UPDATE CASCADE
-	  ON DELETE NO ACTION
+	  ON DELETE CASCADE
 go 
 
 

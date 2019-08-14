@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    this.alertify.confirm('確定要加入我的最愛嗎?', () => {
+    this.alertify.confirm('確定要加入我的好友嗎?', () => {
       this.userService.addMyLiker(this.authService.decodedToken.nameid, likerId).subscribe(() => {
         this.alertify.success('加入成功');
       }, error => {
