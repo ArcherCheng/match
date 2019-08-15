@@ -24,9 +24,9 @@ namespace MatchApi.Repository
             return await PageList<Member>.CreateAsync(list,para.PageNumber,para.PageSize);          
         }
 
-        public async Task<Member> GetUserDetail(int userId)
+        public async Task<MemberDetail> GetUserDetail(int userId)
         {
-            var result = await _db.Member.FirstOrDefaultAsync(x => x.UserId == userId);
+            var result = await _db.MemberDetail.FirstOrDefaultAsync(x => x.UserId == userId);
             return result;
         }
 

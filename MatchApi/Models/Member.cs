@@ -28,8 +28,8 @@ namespace MatchApi.Models
         public string Blood { get; set; }
         public string Star { get; set; }
         public string City { get; set; }
-        public string School { get; set; }
-        public string Subjects { get; set; }
+        //public string School { get; set; }
+        //public string Subjects { get; set; }
         public string JobType { get; set; }
         public string Religion { get; set; }
         public bool IsCloseData { get; set; }

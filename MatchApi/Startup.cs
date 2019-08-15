@@ -98,7 +98,10 @@ namespace MatchApi
             // IHttpContextAccessor httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
             // Extensions.Context.Configure(httpContextAccessor);
 
-            //seeder.SeedLiker(); 
+            //seeder.SeedMembers(); 
+            //seeder.SeedMemberDetail();
+            //seeder.SeedMemberCondition();
+            //seeder.SeedLiker();
 
             //app.UseHttpsRedirection();
             // app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
@@ -112,7 +115,7 @@ namespace MatchApi
                     name: "spa-fallback",
                     defaults: new { Controller = "Fallback", Action ="Index"}
                 );
-            });        
+            });
         }
     }
 }

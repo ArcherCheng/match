@@ -11,8 +11,11 @@ namespace MatchApi.Dtos
             CreateMap<MemberCondition, DtoMemberCondition>().ReverseMap();
             
             CreateMap<Member,DtoMemberList>();
-            CreateMap<Member,DtoMemberDetail>();
-            CreateMap<Member,DtoMemberEdit>().ReverseMap();
+            CreateMap<Member,DtoMemberDetail>().ReverseMap();
+
+            CreateMap<Member,DtoMemberEdit>()
+            .ForMember(dest => dest.Introduction, opt => opt.MapFrom(src => src.MemberDetail.Introduction))
+            .ForMember(dest => dest.LikeCondition, opt => opt.MapFrom(src => src.MemberDetail.LikeCondition));
 
             CreateMap<MemberPhoto,DtoPhotoList>();
             CreateMap<MemberPhoto,DtoPhotoCreate>().ReverseMap();

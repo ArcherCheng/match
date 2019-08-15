@@ -53,31 +53,30 @@ export class UserMatchConditionComponent implements OnInit {
 
   setSelectedValue() {
     // console.log('setCheckboxOptions');
-    this.authService.getCheckboxItemList('Blood').subscribe(data => this.bloodOptions = data);
+    this.authService.getGroupKeyValueList('Blood').subscribe(data => this.bloodOptions = data);
     if (this.userCondition.bloodInclude !== null) {
       this.bloodSelected = this.userCondition.bloodInclude.split(',');
     }
 
-    this.authService.getCheckboxItemList('Star').subscribe(data => this.starOptions = data);
+    this.authService.getGroupKeyValueList('Star').subscribe(data => this.starOptions = data);
     if (this.userCondition.starInclude) {
       this.starSelected = this.userCondition.starInclude.split(',');
     }
 
-    this.authService.getCheckboxItemList('Job').subscribe(data => this.jobOptions = data);
+    this.authService.getGroupKeyValueList('Job').subscribe(data => this.jobOptions = data);
     if (this.userCondition.jobTypeInclude) {
       this.jobSelected = this.userCondition.jobTypeInclude.split(',');
     }
 
-    this.authService.getCheckboxItemList('City').subscribe(data => this.cityOptions = data);
+    this.authService.getGroupKeyValueList('City').subscribe(data => this.cityOptions = data);
     if (this.userCondition.cityInclude) {
       this.citySelected = this.userCondition.cityInclude.split(',');
     }
 
-    this.authService.getCheckboxItemList('Religion').subscribe(data => this.religionOptions = data);
+    this.authService.getGroupKeyValueList('Religion').subscribe(data => this.religionOptions = data);
     if (this.userCondition.religionInclude) {
       this.religionSelected = this.userCondition.religionInclude.split(',');
     }
-
   }
 
   createFormGroup() {

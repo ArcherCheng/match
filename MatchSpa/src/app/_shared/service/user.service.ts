@@ -9,6 +9,7 @@ import { UserCondition } from '../interface/user-condition';
 import { UserPhoto } from '../interface/user-photo';
 import { AuthService } from './auth.service';
 import { UserMessage } from '../interface/user-message';
+import { UserDetail } from '../interface/user-detail';
 
 @Injectable({
   providedIn: 'root'
@@ -79,8 +80,8 @@ export class UserService {
     }
   }
 
-  getUserDetail(userId: number): Observable<User> {
-    return this.http.get<User>(this.baseUrl + 'home/userDetail/' + userId);
+  getUserDetail(userId: number): Observable<UserDetail> {
+    return this.http.get<UserDetail>(this.baseUrl + 'home/userDetail/' + userId);
   }
 
   getUserPhotos(userId: number): Observable<UserPhoto[]> {

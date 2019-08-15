@@ -18,15 +18,16 @@ export interface User {
   jobType: string;
   religion: string;
 
-  school: string;
-  subjects: string;
-  introduction: string;
-  likeCondition: string;
+  // school: string;
+  // subjects: string;
   isCloseData: boolean;
+  isClosePhoto: boolean;
 
   mainPhotoUrl: string;
   loginDate: Date;
   activeDate: Date;
 
+  // introduction: string;
+  // likeCondition: string;
 }
 

@@ -56,7 +56,10 @@ namespace MatchApi.Repository
 
         public async Task<Member> GetMemberEdit(int userId)
         {
-            var result = await _db.Member.Include(x => x.MemberPhoto).FirstOrDefaultAsync(x => x.UserId == userId);
+            var result = await _db.Member
+                .Include(x => x.MemberDetail)
+                .Include(x => x.MemberPhoto)
+                .FirstOrDefaultAsync(x => x.UserId == userId);
             return result;
         }
 

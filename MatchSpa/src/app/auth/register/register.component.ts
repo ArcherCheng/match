@@ -39,11 +39,11 @@ export class RegisterComponent implements OnInit {
   }
 
   loadCheckBoxItem() {
-    this.authService.getCheckboxItemList('Blood').subscribe(data => this.bloodOptions = data);
-    this.authService.getCheckboxItemList('Star').subscribe(data => this.starOptions = data);
-    this.authService.getCheckboxItemList('City').subscribe(data => this.cityOptions = data);
-    this.authService.getCheckboxItemList('Job').subscribe(data => this.jobOptions = data);
-    this.authService.getCheckboxItemList('Religion').subscribe(data => this.religionOptions = data);
+    this.authService.getGroupKeyValueList('Blood').subscribe(data => this.bloodOptions = data);
+    this.authService.getGroupKeyValueList('Star').subscribe(data => this.starOptions = data);
+    this.authService.getGroupKeyValueList('City').subscribe(data => this.cityOptions = data);
+    this.authService.getGroupKeyValueList('Job').subscribe(data => this.jobOptions = data);
+    this.authService.getGroupKeyValueList('Religion').subscribe(data => this.religionOptions = data);
   }
 
   createRegisterForm() {

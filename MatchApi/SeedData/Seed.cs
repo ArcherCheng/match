@@ -15,7 +15,7 @@ namespace MatchApi.Data
 
         public void SeedMembers()
         {
-            var memberJson=System.IO.File.ReadAllText("SeedData/member1.json");
+            var memberJson=System.IO.File.ReadAllText("SeedData/member2.json");
             var members= JsonConvert.DeserializeObject<List<Member>>(memberJson);
             foreach (var member in members) 
             {
@@ -24,6 +24,7 @@ namespace MatchApi.Data
                 member.PasswordHash = passwordHash;
                 member.PasswordSalt = passwordSalt;
                 member.IsCloseData=false;
+                member.IsClosePhoto=false;
                 _context.Member.Add(member);
             }
 
@@ -51,9 +52,22 @@ namespace MatchApi.Data
             _context.SaveChanges();
 
         }        
+        public void SeedMemberDetail()
+        {
+            var Jsondata=System.IO.File.ReadAllText("SeedData/memberDetail.json");
+            var model= JsonConvert.DeserializeObject<List<MemberDetail>>(Jsondata);
+            foreach (var item in model)
+            {
+                _context.MemberDetail.Add(item);
+            }
+
+            _context.SaveChanges();
+
+        }        
+
         public void SeedMemberCondition()
         {
-            var Jsondata=System.IO.File.ReadAllText("Data/condition1.json");
+            var Jsondata=System.IO.File.ReadAllText("SeedData/memberCondition.json");
             var model= JsonConvert.DeserializeObject<List<MemberCondition>>(Jsondata);
             foreach (var item in model)
             {
@@ -64,18 +78,20 @@ namespace MatchApi.Data
 
         }        
 
+
         public void SeedLiker()
         {
             var today=System.DateTime.Now;
-            var Jsondata=System.IO.File.ReadAllText("Data/liker.json");
+            var Jsondata=System.IO.File.ReadAllText("seedData/liker.json");
             var model= JsonConvert.DeserializeObject<List<Liker>>(Jsondata);
             foreach (var item in model)
             {
                 // item.AddedDate = today;
+                item.IsDelete = false;
                 _context.Liker.Add(item);
                 _context.SaveChanges();
             } 
-        }        
+        }
         
     }
 }

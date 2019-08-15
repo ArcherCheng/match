@@ -83,8 +83,8 @@ export class AuthService {
     this.mainPhotoUrl.next(photoUrl);
   }
 
-  getCheckboxItemList(keyGroup: string): Observable<CheckboxItem[]> {
-    return this.http.get<CheckboxItem[]>(this.baseUrl + 'getCheckboxItemList/' + keyGroup);
+  getGroupKeyValueList(keyGroup: string): Observable<CheckboxItem[]> {
+    return this.http.get<CheckboxItem[]>(this.baseUrl + 'getGroupKeyValueList/' + keyGroup);
   }
 
   handleError<T>(operation = 'operation', result?: T) {

@@ -129,11 +129,11 @@ namespace MatchApi.Models
 
                 entity.Property(e => e.Religion).HasMaxLength(30);
 
-                entity.Property(e => e.School).HasMaxLength(30);
+                // entity.Property(e => e.School).HasMaxLength(30);
 
                 entity.Property(e => e.Star).HasMaxLength(30);
 
-                entity.Property(e => e.Subjects).HasMaxLength(30);
+                // entity.Property(e => e.Subjects).HasMaxLength(30);
 
                 entity.Property(e => e.UpdateTime).HasColumnType("datetime");
 

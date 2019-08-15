@@ -4,6 +4,7 @@ import { AlertifyService } from '../_shared/service/alertify.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../_shared/interface/user';
 import { AuthService } from '../_shared/service/auth.service';
+import { UserDetail } from '../_shared/interface/user-detail';
 
 @Component({
   selector: 'app-user-detail',
@@ -11,7 +12,7 @@ import { AuthService } from '../_shared/service/auth.service';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
-  user: User;
+  userDetail: UserDetail;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +23,7 @@ export class UserDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.data.subscribe((data: {apiResult: User} ) => { this.user = data.apiResult; } );
+    this.route.data.subscribe((data: {apiResult: UserDetail} ) => { this.userDetail = data.apiResult; } );
   }
 
   addMyLiker(likerId: number) {

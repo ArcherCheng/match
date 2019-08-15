@@ -1,11 +1,13 @@
 <div class="card-body p-1">
-  <div class="card-text text-muted text-center"><strong>性別: {{user.sex | sex}}</strong> </div>
   <div class="card-text text-muted text-center"><strong>暱稱: {{user.nickName}}</strong> </div>
+  <div class="card-text text-muted text-center"><strong>性別: {{user.sex | sex}}</strong> </div>
+  <div class="card-text text-muted text-center"><strong>婚姻:{{user.marry | marry}}</strong> </div>
   <div class="card-text text-muted text-center"><strong>出生年: {{user.birthYear}} &nbsp;&nbsp; 血型: {{user.blood}}</strong></div>
   <div class="card-text text-muted text-center"><strong>身高: {{user.heights}} CM &nbsp;&nbsp; 體重: {{user.weights}} KG</strong></div>
   <div class="card-text text-muted text-center"><strong>學歷: {{user.education | education}}</strong></div>
   <div class="card-text text-muted text-center"><strong>星座: {{user.star}}</strong></div>
   <div class="card-text text-muted text-center"><strong>職業: {{user.jobType}}</strong></div>
   <div class="card-text text-muted text-center"><strong>居住城市: {{user.city}}</strong></div>
+  <div class="card-text text-muted text-center"><strong>宗教信仰: {{user.religion}}</strong></div>
   <div class="card-text text-muted text-center"><strong>更新時間: {{user.activeDate | date: 'yy/M/d hh:mm'}}</strong></div>
 </div>

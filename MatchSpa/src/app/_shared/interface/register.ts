@@ -1,12 +1,10 @@
 export interface Register {
-  firstName: string;
-  lastName: string;
+  sex: number;
   nickName: string;
   phone: string;
   email: string;
-  birthday: Date;
-  sex: number;
   marry: number;
+  birthYear: number;
   education: number;
   heights: number;
   weights: number;

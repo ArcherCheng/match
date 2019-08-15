@@ -5,11 +5,12 @@ import { AlertifyService } from '../_shared/service/alertify.service';
 import { catchError } from 'rxjs/operators';
 import { EMPTY, Observable } from 'rxjs';
 import { User } from '../_shared/interface/user';
+import { UserDetail } from '../_shared/interface/user-detail';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserDetailResolverService implements Resolve<User> {
+export class UserDetailResolverService implements Resolve<UserDetail> {
 
   constructor(
     private router: Router,
@@ -17,7 +18,7 @@ export class UserDetailResolverService implements Resolve<User> {
     private alertify: AlertifyService
   ) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserDetail> {
     return this.userService.getUserDetail(route.params.userId).pipe(
       catchError(error => {
         this.alertify.error(error.error);
