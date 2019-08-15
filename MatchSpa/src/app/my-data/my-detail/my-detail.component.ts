@@ -67,7 +67,6 @@ export class MyDetailComponent implements OnInit {
       mainPhotoUrl: [this.user.mainPhotoUrl],
       loginDate: [this.user.loginDate],
       activeDate: [this.user.activeDate],
-
     });
   }
 

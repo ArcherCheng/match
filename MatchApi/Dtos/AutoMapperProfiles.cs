@@ -15,7 +15,8 @@ namespace MatchApi.Dtos
 
             CreateMap<Member,DtoMemberEdit>()
             .ForMember(dest => dest.Introduction, opt => opt.MapFrom(src => src.MemberDetail.Introduction))
-            .ForMember(dest => dest.LikeCondition, opt => opt.MapFrom(src => src.MemberDetail.LikeCondition));
+            .ForMember(dest => dest.LikeCondition, opt => opt.MapFrom(src => src.MemberDetail.LikeCondition))
+            .ReverseMap();
 
             CreateMap<MemberPhoto,DtoPhotoList>();
             CreateMap<MemberPhoto,DtoPhotoCreate>().ReverseMap();

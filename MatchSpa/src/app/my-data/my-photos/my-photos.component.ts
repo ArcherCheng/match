@@ -55,6 +55,7 @@ export class MyPhotosComponent implements OnInit {
         const res: UserPhoto = JSON.parse(response);
         const photo = {
           id: res.id,
+          userId: res.userId,
           photoUrl: res.photoUrl,
           dateAdded: res.dateAdded,
           descriptions: res.descriptions,

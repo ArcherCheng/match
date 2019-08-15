@@ -5,6 +5,7 @@ namespace MatchApi.Dtos
    public class DtoPhotoList
     {
         public int id { get; set; }
+        public int userId { get; set; }
         public string descriptions { get; set; }
         public string photoUrl { get; set; }
         public string publicId { get; set; }

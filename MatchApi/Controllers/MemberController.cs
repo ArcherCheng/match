@@ -195,11 +195,27 @@ namespace MatchApi.Controllers
         [HttpPost("updateMember")]
         public async Task<IActionResult> updateMember(int userId, DtoMemberEdit model)
         {
+            MemberDetail memberDetail;
+
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
             var member = await _repoMember.GetMemberEdit(userId);
             _mapper.Map(model, member);
+            if (member.MemberDetail == null)
+            {
+                memberDetail = new MemberDetail();
+                memberDetail.UserId = userId;
+                memberDetail.Introduction = model.Introduction;
+                memberDetail.LikeCondition = model.LikeCondition;
+                member.MemberDetail = memberDetail;
+            }
+            else
+            {
+                member.MemberDetail.Introduction = model.Introduction;
+                member.MemberDetail.LikeCondition = model.LikeCondition;
+            }
+
             member.ActiveDate = System.DateTime.Now;
             // member.LoginDate = System.DateTime.Now;
 

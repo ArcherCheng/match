@@ -27,7 +27,7 @@ export interface User {
   loginDate: Date;
   activeDate: Date;
 
-  // introduction: string;
-  // likeCondition: string;
+  introduction: string;
+  likeCondition: string;
 }
 
