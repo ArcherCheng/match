@@ -9,6 +9,7 @@ namespace MatchApi.Repository
     {
        //使用者資料
         Task<PageList<Member>> GetUserList(ParamsMember para);
+        Task<Member> GetUserData(int userId);
         Task<MemberDetail> GetUserDetail(int userId);
         Task<IEnumerable<MemberPhoto>> GetUserPhotos(int userId);   
         //配對條件資料

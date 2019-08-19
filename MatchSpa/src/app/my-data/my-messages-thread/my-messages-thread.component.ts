@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/_shared/service/auth.service';
 import { AlertifyService } from 'src/app/_shared/service/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs/operators';
+import { User } from 'src/app/_shared/interface/user';
 
 @Component({
   selector: 'app-my-messages-thread',
@@ -13,6 +14,7 @@ import { tap } from 'rxjs/operators';
 })
 export class MyMessagesThreadComponent implements OnInit {
   recipientId: number;
+  recipientUser: User;
   messages: UserMessage[];
   newMessage: any = {};
 
@@ -25,6 +27,12 @@ export class MyMessagesThreadComponent implements OnInit {
 
   ngOnInit() {
     this.recipientId = this.route.snapshot.params.recipientId;
+    this.userService.getUserData(this.recipientId).subscribe(
+      data => {
+        this.recipientUser = data;
+      }, error => {
+        this.alertify.error(error);
+      });
     // this.userService.getMessageThread(this.authService.decodedToken.nameid, this.recipientId)
     //   .subscribe(data => this.messages = data);
 

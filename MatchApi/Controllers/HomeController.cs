@@ -36,6 +36,14 @@ namespace MatchApi.Controllers
             return Ok(dtoUserList);
         }
 
+        [HttpGet("userData/{userId}")]
+        public async Task<IActionResult> GetUserData(int userId)
+        {
+            var member = await _repoHome.GetUserData(userId);
+            var dtoMember = _mapper.Map<DtoMemberList>(member);
+            return Ok(dtoMember);
+        }
+
         [HttpGet("userDetail/{userId}")]
         public async Task<IActionResult> GetUserDetail(int userId)
         {

@@ -8,6 +8,7 @@ namespace MatchApi.Models
          DateTime? UpdateTime { get; set; }
          int? WriteId { get; set; }
          string WriteIp { get; set; }
+         Validation Validate();
     }
 }
 

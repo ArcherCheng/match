@@ -80,6 +80,10 @@ export class UserService {
     }
   }
 
+  getUserData(userId: number): Observable<User> {
+    return this.http.get<User>(this.baseUrl + 'home/userData/' + userId);
+  }
+
   getUserDetail(userId: number): Observable<UserDetail> {
     return this.http.get<UserDetail>(this.baseUrl + 'home/userDetail/' + userId);
   }
