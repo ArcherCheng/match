@@ -1,14 +1,14 @@
-<div id="top-container">
-  <header id="header">
+<div id="app-container">
+  <header id="main-header">
     <app-nav></app-nav>
   </header>
   <div id="main-container">
     <aside id="aside-nav" *ngIf="isSideMenuOpen$ | async">
       <app-main-menu></app-main-menu>
     </aside>
-    <article id="main-article">
+    <section id="main-section">
       <router-outlet></router-outlet>
-    </article>
+    </section>
     <!-- <aside id="aside-ads" >
       <div>
           <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -21,7 +21,7 @@
       </div>
     </aside> -->
   </div>
-  <footer id="footer">
+  <footer id="main-footer">
     <app-footer></app-footer>
   </footer>
 </div>

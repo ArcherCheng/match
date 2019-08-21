@@ -4,9 +4,17 @@
   padding: 0;
 }
 
-#top-container {
+#app-container {
   display: flex;
   flex-direction: column;
+}
+
+#main-header {
+  position: fixed;
+  top:0;
+  z-index: 100;
+  background-color: lightsalmon;
+  width: 100%;
 }
 
 #main-container {
@@ -16,20 +24,13 @@
   margin-top: 51px;
 }
 
-#header {
-  position: fixed;
-  top:0;
-  z-index: 100;
-  background-color: lightsalmon;
-  width: 100%;
-}
 
 #aside-nav {
   flex: 1 ;
   background-color: lightpink;
 }
 
-#main-article {
+#main-section {
   flex: 6 ;
   background-color: lightgray;
 }
@@ -39,7 +40,7 @@
   background-color:lightpink;
 }
 
-#footer {
+#main-footer {
   background-color: lightgreen;
   width: 100%;
 }
