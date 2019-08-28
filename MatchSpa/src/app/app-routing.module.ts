@@ -17,8 +17,8 @@ const routes: Routes = [
   { path: 'userMatchList/:userId', component: UserMatchListComponent, resolve: {apiResult: UserMatchListResolverService} },
   { path: 'userDetail/:userId', component: UserDetailComponent, resolve: { apiResult: UserDetailResolverService } },
   { path: 'userPhotos/:userId', component: UserPhotosComponent, resolve: { apiResult: UserPhotosResolverService } },
-  { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
-  { path: 'myData', loadChildren: './my-data/my-data.module#MyDataModule' },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'myData', loadChildren: () => import('./my-data/my-data.module').then(m => m.MyDataModule) },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];

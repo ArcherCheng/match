@@ -24,7 +24,7 @@ export class UserDetailResolverService implements Resolve<UserDetail> {
         this.alertify.error(error.error);
         this.router.navigate(['/home']);
         return EMPTY;
-    })
+      })
     );
   }
 }

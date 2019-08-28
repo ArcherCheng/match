@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/_shared/service/auth.service';
 })
 export class LoginComponent implements OnInit {
   model: any = {};
-  @ViewChild('loginForm') editFrom: NgForm;
+  @ViewChild('loginForm', { static: true }) editFrom: NgForm;
 
   constructor(
     private router: Router,
