@@ -13,28 +13,28 @@
         <div class="card-footer">
           <ul class="list-inline member-icons animate text-center">
             <li class="list-inline-item">
-              <a class="btn btn-primary" [routerLink]="['/userDetail',user.userId]" title="個人資料">
+              <a class="btn btn-success" [routerLink]="['/userPhotos',user.userId]" title="相簿瀏覽">
                 <!-- [queryParams]="{partyId: currentPartyId}" -->
-                <i class="fa fa-user"></i>
+                <i class="fa fa-image fa-2x"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn btn-primary" [routerLink]="['/userDetail',user.userId]" title="自我介紹">
+                <!-- [queryParams]="{partyId: currentPartyId}" -->
+                <i class="fa fa-address-card fa-2x"></i>
               </a>
             </li>
             <li class="list-inline-item">
               <button class="btn btn-warning" [routerLink]="['/myData/myThread',user.userId]" title="留言訊息">
                 <!-- [queryParams]="{tab: 3}" -->
-                <i class="fa fa-envelope"></i>
+                <i class="fa fa-envelope fa-2x"></i>
               </button>
             </li>
             <li class="list-inline-item">
-              <button class="btn btn-danger" (click)="addMyLiker(user.userId)" title="加入我的最愛">
-                <i class="fa fa-heart"></i>
+              <button class="btn btn-secondary" (click)="deleteMyLiker(user.userId)" title="移出我的好友">
+                <i class="fa fa-heartbeat fa-2x"></i>
               </button>
             </li>
-            <li class="list-inline-item">
-              <button class="btn btn-secondary" (click)="deleteMyLiker(user.userId)" title="移出我的最愛">
-                <i class="fa fa-heartbeat"></i>
-              </button>
-            </li>
-
           </ul>
         </div>
       </div>

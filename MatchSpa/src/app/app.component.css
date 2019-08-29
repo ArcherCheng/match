@@ -1,3 +1,6 @@
+:root {
+  --is-aside-open: true;
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -18,25 +21,29 @@
 }
 
 #main-container {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  margin-top: 51px;
+  display: block;
+  position: relative;
+  /* flex-direction: row; */
+  /* align-items: stretch; */
+  /* margin-top: 51px; */
 }
 
 
 #aside-nav {
-  flex: 1 ;
   background-color: lightpink;
+  width: 200px;
+  position: fixed;
+  top:50px;
+  left: 0;
+  z-index: 120;
 }
 
 #main-section {
-  flex: 6 ;
   background-color: lightgray;
+  margin-left: 200px;
 }
 
 #aside-ads {
-  flex: 1 ;
   background-color:lightpink;
 }
 
