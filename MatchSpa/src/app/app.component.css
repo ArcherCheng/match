@@ -18,6 +18,12 @@
   z-index: 100;
   background-color: lightsalmon;
   width: 100%;
+  background-image: linear-gradient(
+    45deg,
+    lightsalmon 30%,
+    #9955ab 60%,
+    #cc55ab 100%
+    );
 }
 
 #main-container {

@@ -1,46 +1,51 @@
 <nav class="top-navbar">
-  <button class="navbar-toggler" (click)="sideMenuToggle()" type="button" title="功能表切換">
-    <span class="fa fa-bars"></span>
-    <!-- <span *ngIf="!isCollapsed" class="fa fa-times"></span> -->
-  </button>
+  <div class="toggle">
+    <button class="navbar-toggler" (click)="sideMenuToggle()" type="button" title="功能表切換">
+      <span class="fa fa-bars"></span>
+      <!-- <span *ngIf="!isCollapsed" class="fa fa-times"></span> -->
+    </button>
+  </div>
 
-  <div class="brand-logo">
+  <!-- <div class="brand-logo">
     <a [routerLink]="['/home']" title="回到首頁"><i class="fa fa-home fa-2x"></i>
     </a>
     <a class="" [routerLink]="['/userCondition']" routerLinkActive="router-link-active" title="我要配對,尋找朋友">
       <span class="fa fa-user-plus fa-2x"></span>
     </a>
-  </div>
+  </div> -->
 
-  <!--
   <div class="brand-menu">
-    <ul>
-      <li>
-        <a class="" [routerLink]="['/userCondition']" routerLinkActive="router-link-active"><strong>配對條件</strong>
+    <div class="menu-item">
+        <a class="" [routerLink]="['/home']" routerLinkActive="router-link-active"><strong>首頁</strong>
         </a>
-      </li>
-      <li>
+    </div>
+    <div class="menu-item">
+        <a class="" [routerLink]="['/userCondition']" routerLinkActive="router-link-active"><strong>配對</strong>
+        </a>
+    </div>
+    <div class="menu-item">
         <a class="" [routerLink]="['/userMatchList/0']" routerLinkActive="router-link-active"> <strong>配對結果</strong>
         </a>
-      </li>
-    </ul>
+    </div>
   </div>
-  -->
 
-  <div class="logged-user" *ngIf="authService.isLogin()">
-    <!-- <img src="{{authService.currentUser.photoUrl || '../../assets/imgs/user.png'}}" alt=""> -->
-    <img class="img-circle" src="{{photoUrl}}" alt="" id="topbar-photo">
-    <div class="user-name"><span>{{authService.decodedToken?.unique_name}}</span></div>
-    <app-my-messages-alert></app-my-messages-alert>
-    <!--
-    <a class="logout-icon" (click)="logout()" title="登出(Logout)">
-      <span class="fa fa-sign-out fa-2x"></span>
-    </a>
-    -->
+  <div class="logged-right">
+      <div class="logged-user" *ngIf="authService.isLogin()">
+          <!-- <img src="{{authService.currentUser.photoUrl || '../../assets/imgs/user.png'}}" alt=""> -->
+          <img class="img-circle" src="{{photoUrl}}" alt="" id="topbar-photo">
+          <div class="user-name"><span> <strong>{{authService.decodedToken?.unique_name}}</strong></span></div>
+          <app-my-messages-alert></app-my-messages-alert>
+          <!--
+          <a class="logout-icon" (click)="logout()" title="登出(Logout)">
+            <span class="fa fa-sign-out fa-2x"></span>
+          </a>
+          -->
+        </div>
+        <div class="login" *ngIf="!authService.isLogin()">
+          <a class="login-icon" [routerLink]="['auth','login']" routerLinkActive="router-link-active" title="登入(Login) ">
+            <span class="fa fa-sign-in"><strong>登入</strong></span>
+          </a>
+        </div>
   </div>
-  <div class="login" *ngIf="!authService.isLogin()">
-    <a class="login-icon" [routerLink]="['auth','login']" routerLinkActive="router-link-active" title="登入(Login) ">
-      <span class="fa fa-sign-in">登入</span>
-    </a>
-  </div>
+
 </nav>

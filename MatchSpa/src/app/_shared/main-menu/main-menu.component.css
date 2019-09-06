@@ -24,12 +24,13 @@ li a{
   display: block;
   /* width: 195px; */
   text-align: center;
-  background-color: rgb(205, 224, 31);
+  background-color:pink;
   margin: 1px;
   padding: 10px;
+
 }
 
 li a:hover {
-  background-color: #555;
+  background-color: rgb(36, 156, 62);
   color: white;
 }
