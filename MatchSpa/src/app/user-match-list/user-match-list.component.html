@@ -15,24 +15,24 @@
                 <li class="list-inline-item">
                   <a class="btn btn-success" [routerLink]="['/userPhotos',user.userId]" title="相簿瀏覽">
                     <!-- [queryParams]="{partyId: currentPartyId}" -->
-                    <i class="fa fa-image fa-2x"></i> 
+                    <i class="fa fa-image "></i>
                   </a>
                 </li>
                 <li class="list-inline-item">
                   <a class="btn btn-primary" [routerLink]="['/userDetail',user.userId]" title="自我介紹">
                     <!-- [queryParams]="{partyId: currentPartyId}" -->
-                    <i class="fa fa-address-card fa-2x"></i>
+                    <i class="fa fa-address-card "></i>
                   </a>
-                </li>            
+                </li>
                 <li class="list-inline-item">
                   <button class="btn btn-warning" [routerLink]="['/myData/myThread',user.userId]" title="留言訊息">
                     <!-- [queryParams]="{tab: 3}" -->
-                    <i class="fa fa-envelope fa-2x"></i>
+                    <i class="fa fa-envelope "></i>
                   </button>
                 </li>
                 <li class="list-inline-item">
                   <button class="btn btn-danger" (click)="addMyLiker(user.userId)" title="加入好友">
-                    <i class="fa fa-heart fa-2x"></i>
+                    <i class="fa fa-heart "></i>
                   </button>
                 </li>
               </ul>

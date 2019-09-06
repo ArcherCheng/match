@@ -1,58 +1,47 @@
-<div class="main-menu">
+<div id="menu-wrapper">
   <ul>
     <li>
-      <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['/userCondition']"
-        routerLinkActive="router-link-active">配對條件
-      </a>
-    </li>
-    <li>
-      <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['/userMatchList/0']"
-        routerLinkActive="router-link-active">配對結果
-      </a>
-    </li>
-
-    <li>
-      <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['/myData/myDetail']"
-        routerLinkActive="router-link-active">我的資料
-      </a>
-    </li>
-    <li>
-      <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['/myData/myPhotos']"
-        routerLinkActive="router-link-active">我的相簿
-      </a>
-    </li>
-    <li>
-      <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['/myData/myLikers']"
-        routerLinkActive="router-link-active">我的朋友
-      </a>
-    </li>
-    <li>
-      <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['/myData/myMessages']"
+      <a class="list-group-item list-group-item-action" [routerLink]="['/myData/myMessages']"
         routerLinkActive="router-link-active">我的訊息
       </a>
     </li>
     <li>
-      <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['auth','changePassword']"
+      <a class="list-group-item list-group-item-action" [routerLink]="['/myData/myLikers']"
+        routerLinkActive="router-link-active">我的好友
+      </a>
+    </li>
+    <li>
+      <a class="list-group-item list-group-item-action" [routerLink]="['/myData/myDetail']"
+        routerLinkActive="router-link-active">我的資料
+      </a>
+    </li>
+    <li>
+      <a class="list-group-item list-group-item-action" [routerLink]="['/myData/myPhotos']"
+        routerLinkActive="router-link-active">我的相簿
+      </a>
+    </li>
+    <li>
+      <a class="list-group-item list-group-item-action" [routerLink]="['auth','changePassword']"
         routerLinkActive="router-link-active">變更密碼
       </a>
     </li>
     <li>
-      <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['auth','forgetPassword']"
+      <a class="list-group-item list-group-item-action" [routerLink]="['auth','forgetPassword']"
         routerLinkActive="router-link-active">忘記密碼
       </a>
     </li>
     <li>
-      <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['auth','register']"
+      <a class="list-group-item list-group-item-action" [routerLink]="['auth','register']"
         routerLinkActive="router-link-active">新人註冊
       </a>
     </li>
     <li>
-      <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['auth','login']"
+      <a class="list-group-item list-group-item-action" [routerLink]="['auth','login']"
         routerLinkActive="router-link-active">登入系統
       </a>
     </li>
     <li>
-      <a classa="list-group-item list-group-item-action bg-light" [routerLink]="['/home']" (click)="logout()"
+      <a class="list-group-item list-group-item-action" [routerLink]="['/home']" (click)="logout()"
         routerLinkActive="router-link-active">登出系統
       </a>
     </li>

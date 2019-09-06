@@ -7,10 +7,10 @@
   </div>
 
   <!-- <div class="brand-logo">
-    <a [routerLink]="['/home']" title="回到首頁"><i class="fa fa-home fa-2x"></i>
+    <a [routerLink]="['/home']" title="回到首頁"><i class="fa fa-home "></i>
     </a>
     <a class="" [routerLink]="['/userCondition']" routerLinkActive="router-link-active" title="我要配對,尋找朋友">
-      <span class="fa fa-user-plus fa-2x"></span>
+      <span class="fa fa-user-plus "></span>
     </a>
   </div> -->
 
@@ -33,11 +33,14 @@
       <div class="logged-user" *ngIf="authService.isLogin()">
           <!-- <img src="{{authService.currentUser.photoUrl || '../../assets/imgs/user.png'}}" alt=""> -->
           <img class="img-circle" src="{{photoUrl}}" alt="" id="topbar-photo">
-          <div class="user-name"><span> <strong>{{authService.decodedToken?.unique_name}}</strong></span></div>
-          <app-my-messages-alert></app-my-messages-alert>
+          <div class="user-wrapper">
+            <div class="user-name" ><strong>{{authService.decodedToken?.unique_name}}</strong></div>
+            <app-my-messages-alert  class="user-message"></app-my-messages-alert>
+          </div>
+
           <!--
           <a class="logout-icon" (click)="logout()" title="登出(Logout)">
-            <span class="fa fa-sign-out fa-2x"></span>
+            <span class="fa fa-sign-out "></span>
           </a>
           -->
         </div>

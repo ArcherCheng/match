@@ -1,10 +1,5 @@
 .top-navbar{
   display: flex;
-  height: 50px;
-  line-height: 50px;
-  margin: 0;
-  padding: 0;
-  text-align: center;
 }
 
 .toggle:hover {
@@ -20,7 +15,7 @@
   display: block;
   color: black;
   text-align: center;
-  padding: 0px 10px;
+  padding: 0px 5px;
 }
 
 .brand-menu a:hover {
@@ -30,23 +25,33 @@
 .logged-right{
   position: absolute;
   right: 10px;
-  /* background-color: bisque; */
 }
 
 .logged-user{
   display: flex;
-  margin-right: 1px;
+  margin-right: 5px;
 }
 
-.logged-user img {
+.logged-user>img {
   width: 45px;
   height: 45px;
   border-radius: 50%;
   margin-top: 2px;
+  margin-right: 5px;
 }
 
-.user-name span {
-  margin: 0px 8px;
+.user-wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  line-height: 22px;
+}
+
+.user-message{
+  line-height: 26px;
+  text-align: center;
 }
 
 .logout-icon:hover , .login-icon:hover{

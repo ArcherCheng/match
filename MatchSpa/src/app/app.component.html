@@ -2,15 +2,17 @@
   <header id="main-header">
     <app-nav></app-nav>
   </header>
-  <div id="main-container">
-    <aside id="aside-nav" *ngIf="isSideMenuOpen$ | async">
-      <app-main-menu></app-main-menu>
+  <main id="main-container">
+    <aside id="aside-menu" *ngIf="isSideMenuOpen$ | async">
+        <div id="aside-nav">
+            <app-main-menu></app-main-menu>
+        </div>
     </aside>
     <section id="main-section">
       <router-outlet></router-outlet>
     </section>
     <aside id="aside-ads"></aside>
-  </div>
+  </main>
   <footer id="main-footer">
     <app-footer></app-footer>
   </footer>
