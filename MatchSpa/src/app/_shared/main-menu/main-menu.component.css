@@ -31,9 +31,9 @@
   background-color:green;
   color: white;
 }
+
 @media (max-width: 768px) {
   #menu-wrapper>ul {
     width:calc(100vw);
   }
-
 }

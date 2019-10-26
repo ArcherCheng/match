@@ -4,7 +4,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace MatchApi.Helpers
 {
-    public static class PapeExtensions
+    public static class PageExtensions
     {
      public static void AddPagination(this HttpResponse response, 
             int currentPage, int itemsPerPage, int totalItems,int totalPages)

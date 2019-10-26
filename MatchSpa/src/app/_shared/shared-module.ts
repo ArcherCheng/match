@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap';
+import { LayoutModule } from '@angular/cdk/layout';
 
 import { MarryPipe } from 'src/app/_shared/pipe/marry.pipe';
 import { EducationPipe } from 'src/app/_shared/pipe/education.pipe';
@@ -29,6 +30,7 @@ import { FbLikeComponent } from './social-buttons/FbLikeComponent';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    LayoutModule,
     PaginationModule.forRoot(),
   ],
   exports: [

@@ -21,10 +21,11 @@ export class AuthService {
   private mainPhotoUrl = new BehaviorSubject<string>('../../assets/imgs/user.png');
   currentPhotoUrl = this.mainPhotoUrl.asObservable();
   private condition: UserCondition;
+
   private isSidemenOpen = true;
   private sideMenuToggle: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isSidemenOpen);
-  isSideMenuToggle = this.sideMenuToggle.asObservable();
-  get isSideMenuToggleX() {
+  // isSideMenuToggle = this.sideMenuToggle.asObservable();
+  get isSideMenuToggle() {
     return this.sideMenuToggle.asObservable();
   }
 

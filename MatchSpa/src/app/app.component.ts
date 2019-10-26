@@ -11,7 +11,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {   // , OnDestroy
-  title = 'MyMatch';
+  // title = 'Taipei Match';
   jwtHelper = new JwtHelperService();
   // asideNavToggle = true;
   isSideMenuOpen$: Observable<boolean>;

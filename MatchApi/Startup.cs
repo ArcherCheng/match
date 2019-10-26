@@ -35,6 +35,8 @@ namespace MatchApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // services.AddMemoryCache();
+            // services.AddSignalR();
             services.AddDbContext<AppDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                 .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.IncludeIgnoredWarning)));
@@ -105,8 +107,13 @@ namespace MatchApi
 
             //app.UseHttpsRedirection();
             // app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-            app.UseCors(x => x.WithOrigins("http://localhost:4200")
-                .AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+            app.UseCors(x => 
+                x.WithOrigins("http://localhost:4200")
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+                );
             app.UseAuthentication();
             app.UseStaticFiles();
             // app.UseMvc();
@@ -116,6 +123,8 @@ namespace MatchApi
                     defaults: new { Controller = "Fallback", Action ="Index"}
                 );
             });
+            
+
         }
     }
 }

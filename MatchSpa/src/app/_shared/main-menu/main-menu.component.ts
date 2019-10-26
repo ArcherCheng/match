@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
-import { Observable } from 'rxjs';
+// import { Observable } from 'rxjs';
+// import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-main-menu',
@@ -8,12 +9,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./main-menu.component.css']
 })
 export class MainMenuComponent implements OnInit {
-  isSideMenuOpen$: Observable<boolean>;
+  // isSideMenuOpen$: Observable<boolean>;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    // private breakpointObserver: BreakpointObserver
+    ) { }
 
   ngOnInit() {
-    this.isSideMenuOpen$ = this.authService.isSideMenuToggle;
+    // this.isSideMenuOpen$ = this.authService.isSideMenuToggle;
   }
 
   logout() {
