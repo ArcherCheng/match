@@ -7,7 +7,7 @@ namespace MatchApi.Repository
 {
     public interface IRepoHome : IBaseRepository
     {
-       //使用者資料
+        //使用者資料
         Task<PageList<Member>> GetUserList(ParamsMember para);
         Task<Member> GetUserData(int userId);
         Task<MemberDetail> GetUserDetail(int userId);

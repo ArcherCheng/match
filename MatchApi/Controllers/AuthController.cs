@@ -46,7 +46,7 @@ namespace MatchApi.Controllers
             // return Ok(user);
 
             //重新導向使用者資料編輯
-            //return CreatedAtRoute("GetAccountr", new {controller = "account", id = userToReturn.USERID}, userToReturn);
+            //return CreatedAtRoute("GetAccount", new {controller = "account", id = userToReturn.USERID}, userToReturn);
         }
 
         [HttpPost("login")]
